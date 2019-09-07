@@ -13,6 +13,13 @@ public class Inicio extends AppCompatActivity {
     MediaPlayer mp;
     Button btnreproducir;
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //codigo adicional
+       // this.finish();
+    }
+
 
 
     @Override
