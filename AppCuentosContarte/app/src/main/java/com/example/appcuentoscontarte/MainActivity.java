@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         btncomenzar_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent comenzar= new Intent(MainActivity.this, Inicio.class);
+                Intent comenzar= new Intent(MainActivity.this, Intermedio.class);
                 MainActivity.this.startActivity(comenzar);
                 //Toast.makeText(getApplicationContext(), "Se presiono", Toast.LENGTH_LONG).show();
                 MainActivity.this.finish();
