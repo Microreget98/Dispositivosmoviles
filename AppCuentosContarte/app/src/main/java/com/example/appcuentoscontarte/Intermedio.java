@@ -19,14 +19,14 @@ public class Intermedio extends AppCompatActivity {
         btncuento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cuento = new Intent(Intermedio.this, Lienzo.class);
+                Intent cuento = new Intent(Intermedio.this, Inicio.class);
                 Intermedio.this.startActivity(cuento);
                 Intermedio.this.finish();
             }
         });
     }
 
-//    private void Creacionmenu(basedatos){
-//
-//    }
+    private void Creacionmenu(){
+
+    }
 }
