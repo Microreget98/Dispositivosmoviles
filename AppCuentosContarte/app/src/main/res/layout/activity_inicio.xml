@@ -8,15 +8,14 @@
     android:paddingTop="3dp"
     android:paddingBottom="3dp"
     tools:context=".Inicio"
-    android:background="@android:color/darker_gray"
-    >
+    android:background="@android:color/darker_gray">
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp"
-        android:background="@android:color/black"
-        >
+        android:background="@android:color/black">
 
         <TextView
             android:id="@+id/textView"
@@ -26,19 +25,15 @@
             android:text="El lobo feroz se acercó"
             android:textColor="@android:color/white"
             android:layout_marginLeft="5dp"
-
             android:textSize="30dp" />
+
     </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:layout_height="0dp"
-
-        >
-
-
+        android:layout_height="0dp">
 
         <Button
             android:id="@+id/button"
@@ -62,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="REPRODUCIR" />
+
     </LinearLayout>
 
     <view
@@ -90,17 +86,14 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:background="@android:color/black"
-            />
-
+            android:background="@android:color/black" />
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:background="@android:color/holo_blue_dark"
-            />
+            android:background="@android:color/holo_blue_dark" />
 
         <ImageButton
             android:id="@+id/imageButton2"
@@ -108,18 +101,21 @@
             android:layout_height="30dp"
             android:layout_weight="1"
             android:background="@android:color/holo_green_dark" />
+
         <ImageButton
             android:id="@+id/imageButton3"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
             android:background="@android:color/holo_orange_dark" />
+
         <ImageButton
             android:id="@+id/imageButton4"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
             android:background="@android:color/holo_red_dark" />
+
         <ImageButton
             android:id="@+id/imageButton5"
             android:layout_width="0dp"
@@ -128,6 +124,4 @@
             android:background="@android:color/holo_purple" />
 
     </LinearLayout>
-
-
 </LinearLayout>
