@@ -33,7 +33,13 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_weight="1"
+<<<<<<< HEAD
         android:layout_height="0dp">
+=======
+        android:layout_height="0dp"
+
+        >
+>>>>>>> InicioLapiz
 
         <Button
             android:id="@+id/button"
@@ -49,8 +55,6 @@
             android:layout_weight="1"
             android:text="Button" />
 
-
-
         <Button
             android:id="@+id/btnreproducir"
             android:layout_width="5dp"
@@ -61,15 +65,15 @@
     </LinearLayout>
 
     <view
+        android:id="@+id/lienzo"
         class="com.example.appcuentoscontarte.Lienzo"
-        id="@+id/lienzo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="8"
-        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
 
-        android:background="#FFFFFF"/>
+        android:layout_weight="8"
+        android:background="#FFFFFF" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -82,46 +86,68 @@
 
         >
         <ImageButton
-            android:id="@+id/imageButton0"
+            android:id="@+id/btnnegro"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
             android:background="@android:color/black" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btnazul"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
+<<<<<<< HEAD
             android:background="@android:color/holo_blue_dark" />
+=======
+            android:tag="#0004FF"
+            android:background="#0004FF"
+            />
+>>>>>>> InicioLapiz
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/btnverde"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
+<<<<<<< HEAD
             android:background="@android:color/holo_green_dark" />
 
+=======
+            android:tag="#3EFF00"
+            android:background="#3EFF00" />
+>>>>>>> InicioLapiz
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/btnamarillo"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
+<<<<<<< HEAD
             android:background="@android:color/holo_orange_dark" />
 
+=======
+            android:tag="#FFFB00"
+            android:background="#FFFB00" />
+>>>>>>> InicioLapiz
         <ImageButton
-            android:id="@+id/imageButton4"
+            android:id="@+id/btnrojo"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
+<<<<<<< HEAD
             android:background="@android:color/holo_red_dark" />
 
+=======
+            android:tag="#FF0000"
+            android:background="#FF0000" />
+>>>>>>> InicioLapiz
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/btnmorado"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:background="@android:color/holo_purple" />
+            android:tag="#9700FF"
+            android:background="#9700FF" />
 
     </LinearLayout>
 </LinearLayout>
