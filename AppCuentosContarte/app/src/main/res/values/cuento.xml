@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <array name="cuento1">
+        <item>Mira indefinidamente a su alrededor</item>
+        <item>Sigue con la vista objetos sin que escapar de su campo visual</item>
+        <item>Explora con sus manos y boca</item>
+    </array>
+
+</resources>

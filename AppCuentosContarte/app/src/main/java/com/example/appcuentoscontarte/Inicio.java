@@ -7,11 +7,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class Inicio extends AppCompatActivity {
 
     MediaPlayer mp;
     Button btnreproducir;
+    TextView tvCuento;
+    private int current_frase;
+
+    private String[] frases;
+    private  String f;
+
+    private String[] audios;
 
     @Override
     public void onBackPressed() {
@@ -30,8 +40,15 @@ public class Inicio extends AppCompatActivity {
         setSupportActionBar(toolbar); */
 
         btnreproducir = (Button)findViewById(R.id.btnreproducir);
+        tvCuento = (TextView) findViewById(R.id.tvCuento);
 
         mp = MediaPlayer.create(this,R.raw.liebretortuga);
+
+        current_frase=0;
+
+        frases = getResources().getStringArray(R.array.cuento1);
+        f = frases[current_frase];
+        tvCuento.setText(f);
 
         btnreproducir.setOnClickListener(new View.OnClickListener() {
             @Override
