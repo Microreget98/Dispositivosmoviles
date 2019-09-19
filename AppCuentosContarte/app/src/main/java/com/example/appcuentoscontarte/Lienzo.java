@@ -77,6 +77,12 @@ public class Lienzo extends View {
         //return super.onTouchEvent(event);
     }
 
+    public  void setColor(String newColor){
+        invalidate();
+        paintColor = Color.parseColor(newColor);
+        drawPaint.setColor(paintColor);
+    }
+
     //Pinta la vista. Será llamado desde el OnTouchEvent
 
     @Override

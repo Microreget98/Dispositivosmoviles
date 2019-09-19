@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         btnsalir_menu = (Button)findViewById(R.id.btnsalir_menu);
         btninfo_menu = (Button)findViewById(R.id.btninfo_menu);
 
+
+
         btncomenzar_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

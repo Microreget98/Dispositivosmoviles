@@ -21,7 +21,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text=" Selecciona un cuento"
-                android:textSize="42dp">
+                android:textSize="25dp"
+                android:gravity="center">
 
             </TextView>
         </LinearLayout>
@@ -34,25 +35,25 @@
             android:paddingVertical="40dp">
 
             <Button
-                android:id="@+id/btncuento"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="Prueba"
-                android:background="@drawable/btnredondo_amarillo"
-                android:layout_marginHorizontal="10dp"/>
-
-            <Button
                 android:id="@+id/btncuento1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Prueba"
+                android:text="CAPERUCITA"
                 android:background="@drawable/btnredondo_amarillo"
                 android:layout_marginHorizontal="10dp"/>
 
             <Button
                 android:id="@+id/btncuento2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="3 COCHINITOS"
+                android:background="@drawable/btnredondo_amarillo"
+                android:layout_marginHorizontal="10dp"/>
+
+            <Button
+                android:id="@+id/btncuento3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -70,7 +71,7 @@
             android:paddingVertical="40dp">
 
             <Button
-                android:id="@+id/btncuento5"
+                android:id="@+id/btncuento4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -79,7 +80,7 @@
                 android:layout_marginHorizontal="10dp"/>
 
             <Button
-                android:id="@+id/btncuento3"
+                android:id="@+id/btncuento5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="10dp"
@@ -88,7 +89,7 @@
                 android:text="Prueba"/>
 
             <Button
-                android:id="@+id/btncuento4"
+                android:id="@+id/btncuento6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="10dp"

@@ -2,9 +2,11 @@
 <resources>
 
     <array name="cuento1">
-        <item>Mira indefinidamente a su alrededor</item>
-        <item>Sigue con la vista objetos sin que escapar de su campo visual</item>
-        <item>Explora con sus manos y boca</item>
+        <item>En una época de fantasía, vivía una niña muy linda y buena llamada Caperucita Roja </item>
+        <item>Vivía con su madre. Un día le dijo ella a la niña: </item>
+        <item>"Caperucita lleva esta canastita con frutas y tortas a tu abuelita que vive muy lejos dentro del bosque"</item>
+        <item>Caperucita Roja obedeció encantada, emprendió el camino y cuando se encontraba a la mitad de la ruta se tropieza con el Lobo que le pregunta: </item>
+        <item>"Caperucita, ¿A dónde vas tan contenta?. Ella le contestá:  "A la casa de mi abuelita". El lobo que es muy astuto le dice:</item>
     </array>
 
 </resources>
