@@ -33,7 +33,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_weight="1"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:padding="5dp">
 
 
 
@@ -42,24 +43,30 @@
             android:layout_width="5dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="Button"
+            android:paddingRight="30dp"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/btnreproducir"
             android:layout_width="5dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight=".4"
             android:text="Reproduce"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/volver"
 
             />
 
 
-        <Button
+        <ImageButton
             android:id="@+id/btnsiguiente"
             android:layout_width="5dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="SIGUIENTE" />
+            android:layout_weight=".5"
+            android:background="@drawable/flechasig"
+            android:text="SIGUIENTE"
+            android:layout_marginRight="20dp"
+            />
 
 
     </LinearLayout>
