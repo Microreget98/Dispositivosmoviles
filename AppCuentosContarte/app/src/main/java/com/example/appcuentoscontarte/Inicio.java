@@ -171,10 +171,10 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 }
                 current_audio++;
 
-                String cuenta= String.valueOf(current_audio);
-                String tamano = String.valueOf(frases.length);
-                Toast.makeText(getApplicationContext(), "Tamaño es "+tamano, Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(), "La cuenta es "+cuenta, Toast.LENGTH_LONG).show();
+                //String cuenta= String.valueOf(current_audio);
+              //  String tamano = String.valueOf(frases.length);
+                //Toast.makeText(getApplicationContext(), "Tamaño es "+tamano, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "La cuenta es "+cuenta, Toast.LENGTH_LONG).show();
 
 
                // Toast.makeText(getApplicationContext(), "La cuenta es "+cuenta, Toast.LENGTH_LONG).show();
@@ -236,7 +236,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                     case 14:
                         mp13.stop();
                         mp14.start();
-                        Toast.makeText(getApplicationContext(), "La cuenta es "+cuenta, Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getApplicationContext(), "La cuenta es "+cuenta, Toast.LENGTH_LONG).show();
                         break;
                     case 15:
                         mp14.stop();
