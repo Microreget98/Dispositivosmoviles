@@ -9,14 +9,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradiente"
+        android:background="@drawable/libr"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            android:layout_weight=".5">
+            android:layout_weight=".9">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -39,8 +39,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="CAPERUCITA"
-                android:background="@drawable/btnredondo_amarillo"
+
+                android:background="@drawable/portada1"
                 android:layout_marginHorizontal="10dp"/>
 
             <Button
