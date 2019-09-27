@@ -25,7 +25,7 @@
             android:text="lop"
             android:textColor="@android:color/white"
             android:gravity="center"
-            android:textSize="15dp" />
+            android:textSize="12dp" />
 
     </LinearLayout>
 
@@ -34,25 +34,38 @@
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="0dp"
-        android:padding="5dp">
-
-
-
+        >
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btncompr"
             android:layout_width="5dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Button"
+            android:layout_weight=".9"
+            android:text="COMP"
+            android:paddingRight="25dp"/>
+
+        <ImageButton
+            android:id="@+id/btnborrador"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".9"
+            android:background="@drawable/borrador"
+            android:paddingRight="25dp"/>
+
+        <ImageButton
+            android:id="@+id/btntrazo"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".7"
+            android:background="@drawable/lapizb"
             android:paddingRight="30dp"/>
 
         <ImageButton
             android:id="@+id/btnreproducir"
             android:layout_width="5dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".4"
+            android:layout_weight=".5"
             android:text="Reproduce"
-            android:layout_marginRight="20dp"
+            android:paddingRight="40dp"
             android:background="@drawable/volver"
 
             />
@@ -62,10 +75,10 @@
             android:id="@+id/btnsiguiente"
             android:layout_width="5dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".5"
+            android:layout_marginRight="10dp"
+            android:layout_weight=".8"
             android:background="@drawable/flechasig"
             android:text="SIGUIENTE"
-            android:layout_marginRight="20dp"
             />
 
 
@@ -203,7 +216,8 @@
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:tag="#353535"
-                android:background="#353535"/>
+                android:background="#353535"
+                android:outlineAmbientShadowColor="@color/colorAmarillo"/>
 
 
         </LinearLayout>

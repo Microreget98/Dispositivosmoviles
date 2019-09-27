@@ -58,12 +58,11 @@
                 android:id="@+id/btncuento2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:background="@drawable/libro1"
                 android:layout_marginHorizontal="30dp"
+
                 android:layout_marginVertical="20dp"
-                />
+                android:layout_weight="1"
+                android:background="@drawable/libro2" />
 
         </LinearLayout>
 
@@ -80,24 +79,25 @@
                 android:id="@+id/btncuento3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:background="@drawable/libro1"
                 android:layout_marginHorizontal="30dp"
+
                 android:layout_marginVertical="20dp"
-                />
+                android:layout_weight="1"
+                android:background="@drawable/libro1"
+
+                android:visibility="invisible" />
 
 
             <ImageButton
                 android:id="@+id/btncuento4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-
-                android:background="@drawable/libro1"
                 android:layout_marginHorizontal="30dp"
+
                 android:layout_marginVertical="20dp"
-                />
+                android:layout_weight="1"
+                android:background="@drawable/libro1"
+                android:visibility="invisible" />
 
 
 
@@ -116,24 +116,24 @@
                     android:id="@+id/btncuento3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-
-                    android:background="@drawable/libro1"
                     android:layout_marginHorizontal="30dp"
+
                     android:layout_marginVertical="20dp"
-                    />
+                    android:layout_weight="1"
+                    android:background="@drawable/libro1"
+                    android:visibility="invisible" />
 
 
                 <ImageButton
                     android:id="@+id/btncuento4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-
-                    android:background="@drawable/libro1"
                     android:layout_marginHorizontal="30dp"
+
                     android:layout_marginVertical="20dp"
-                    />
+                    android:layout_weight="1"
+                    android:background="@drawable/libro1"
+                    android:visibility="invisible" />
 
 
 

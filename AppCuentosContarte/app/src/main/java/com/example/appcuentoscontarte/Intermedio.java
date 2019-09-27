@@ -34,7 +34,7 @@ public class Intermedio extends AppCompatActivity {
             public void onClick(View v) {
                 //Seleccion de cuento
                 Intent cuento = new Intent(Intermedio.this, Inicio.class);
-                cuento.putExtra("cuentoseleccionado","cochinitos");
+                cuento.putExtra("cuentoseleccionado","pollitocurioso");
                 Intermedio.this.startActivity(cuento);
                 Intermedio.this.finish();
             }

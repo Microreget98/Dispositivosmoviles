@@ -1,5 +1,6 @@
 package com.example.appcuentoscontarte;
 
+import android.app.Dialog;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.provider.MediaStore;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
@@ -21,11 +23,16 @@ import java.util.ArrayList;
 public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton negro, cafe, naranja,rojo, rosa, morado, amarillo,verdelimon, verde,turquesa, celeste, azul;
-    MediaPlayer mp,mp1,mp2,mp3,mp4,mp5,mp6,mp7,mp8,mp9,mp10,mp11,mp12,mp13,mp14,mp15,mp16,mp17,mp18,mp19,mp20,mp21,mp22,mp23;
-    ImageButton btnreproducir;
-    ImageButton btnsiguiente;
+    MediaPlayer mp,mp1,mp2,mp3,mp4,mp5,mp6,mp7,mp8,mp9,mp10,mp11,mp12,mp13,mp14,mp15,mp16,mp17,mp18,mp19,mp20,mp21,mp22;
+    ImageButton btnreproducir, btnsiguiente,btnborrador, btntrazo;
+    Button btncompr;
     TextView tvCuento;
     private int current_frase, current_audio;
+
+    float ppequeno;
+    float pmediano;
+    float pgrande;
+    float pdefecto;
 
     private String[] frases;
     private  String f, a;
@@ -41,6 +48,76 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        if(mp.isPlaying()){
+            mp.stop();
+        }
+        if(mp1.isPlaying()){
+            mp1.stop();
+        }
+        if(mp2.isPlaying()){
+            mp2.stop();
+        }
+        if(mp3.isPlaying()){
+            mp3.stop();
+        }
+        if(mp4.isPlaying()){
+            mp4.stop();
+        }
+        if(mp5.isPlaying()){
+            mp5.stop();
+        }
+        if(mp6.isPlaying()){
+            mp6.stop();
+        }
+        if(mp7.isPlaying()){
+            mp7.stop();
+        }
+        if(mp8.isPlaying()){
+            mp8.stop();
+        }
+        if(mp9.isPlaying()){
+            mp9.stop();
+        }
+        if(mp10.isPlaying()){
+            mp10.stop();
+        }
+        if(mp11.isPlaying()){
+            mp11.stop();
+        }
+        if(mp12.isPlaying()){
+            mp12.stop();
+        }
+        if(mp13.isPlaying()){
+            mp13.stop();
+        }
+        if(mp14.isPlaying()){
+            mp14.stop();
+        }
+        if(mp15.isPlaying()){
+            mp15.stop();
+        }
+        if(mp16.isPlaying()){
+            mp16.stop();
+        }
+        if(mp17.isPlaying()){
+            mp17.stop();
+        }
+        if(mp18.isPlaying()){
+            mp18.stop();
+        }
+        if(mp19.isPlaying()){
+            mp19.stop();
+        }
+        if(mp20.isPlaying()){
+            mp20.stop();
+        }
+        if(mp21.isPlaying()){
+            mp21.stop();
+        }
+        if(mp22.isPlaying()){
+            mp22.stop();
+        }
+
         //codigo adicional
         // this.finish();
     }
@@ -56,6 +133,10 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         btnreproducir = (ImageButton) findViewById(R.id.btnreproducir);
         btnsiguiente = (ImageButton) findViewById(R.id.btnsiguiente);
+        btntrazo = (ImageButton)findViewById(R.id.btntrazo);
+        btnborrador = (ImageButton)findViewById(R.id.btnborrador);
+        btncompr = (Button)findViewById(R.id.btncompr);
+
         tvCuento = (TextView) findViewById(R.id.tvCuento);
 
         negro = (ImageButton) findViewById(R.id.btnnegro);
@@ -73,6 +154,11 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         lienzo = (Lienzo) findViewById(R.id.lienzo);
 
+        ppequeno=10;
+        pmediano=20;
+        pgrande=30;
+        pdefecto = pmediano;
+
         negro.setOnClickListener(this);
         cafe.setOnClickListener(this);
         naranja.setOnClickListener(this);
@@ -86,26 +172,27 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         celeste.setOnClickListener(this);
         azul.setOnClickListener(this);
 
+    /*    negro.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                return false;
+            }
+        });*/
+
         btnsiguiente.setOnClickListener(this);
         btnreproducir.setOnClickListener(this);
+        btntrazo.setOnClickListener(this);
+        btnborrador.setOnClickListener(this);
+        btncompr.setOnClickListener(this);
 
-        // mp = MediaPlayer.create(this,R.raw.liebretortuga);
-        //audios = getResources().getStringArray(R.array.audio1);
-        //a = audios[current_audio];
-
-        // mp = MediaPlayer.create(this,R.raw.liebretortuga);
         recibirDato();
-
-        current_frase = 0;
-        current_audio = 0;
-
-        frases = getResources().getStringArray(R.array.cuento1);
-        f = frases[current_frase];
-        tvCuento.setText(f);
 
         if (cs.equals("caperucita")) { // Comparación de Cadenas con .equals
             Toast.makeText(getApplicationContext(), "La Caperucita Roja", Toast.LENGTH_LONG).show();
             int[] sounds = {R.raw.caperucita1, R.raw.caperucita2, R.raw.caperucita3, R.raw.caperucita4, R.raw.caperucita5, R.raw.caperucita6, R.raw.caperucita7, R.raw.caperucita8, R.raw.caperucita9, R.raw.caperucita10, R.raw.caperucita11, R.raw.caperucita12, R.raw.caperucita13, R.raw.caperucita14, R.raw.caperucita15, R.raw.caperucita16, R.raw.caperucita17, R.raw.caperucita18, R.raw.caperucita19, R.raw.caperucita20, R.raw.caperucita21, R.raw.caperucita22, R.raw.caperucita23};
+
+            frases = getResources().getStringArray(R.array.cuento1);
 
             mp = MediaPlayer.create(this, sounds[0]);
             mp1 = MediaPlayer.create(this, sounds[1]);
@@ -131,276 +218,317 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
             mp21 = MediaPlayer.create(this, sounds[21]);
             mp22 = MediaPlayer.create(this, sounds[22]);
 
-
-//            mp.setOnCompletionListener(Inicio);
-            mp.start();
-            int dur = mp.getDuration();
-            current_frase++;
-            for(int ini = 0; ini < mp.getDuration()-10; ini++) {
-                if (ini == mp.getDuration()-10 ) {
-                    f = frases[current_frase];
-                    tvCuento.setText(f);
-                }
-            }
-
-
-
-//            if(mp.isPlaying() == false){
-//                f = frases[current_frase];
-//                tvCuento.setText(f);
-//            }
-//            String i = String.valueOf(ini);
-//            String sdur = String.valueOf(dur);
-//            Toast.makeText(getApplicationContext(), "Audio Duration" + sdur, Toast.LENGTH_LONG).show();
-//            Toast.makeText(getApplicationContext(), "Audio Duration control " + i, Toast.LENGTH_LONG).show();
         }
+        if(cs.equals("pollitocurioso")) {
+            Toast.makeText(getApplicationContext(), "El Pollito Curioso", Toast.LENGTH_LONG).show();
+            int[] sounds = {R.raw.pollitocurioso1, R.raw.pollitocurioso2, R.raw.pollitocurioso3, R.raw.pollitocurioso4, R.raw.pollitocurioso5,R.raw.pollitocurioso6,R.raw.pollitocurioso7,R.raw.pollitocurioso8};
+
+            frases = getResources().getStringArray(R.array.cuento2);
+
+            mp = MediaPlayer.create(this, sounds[0]);
+            mp1 = MediaPlayer.create(this, sounds[1]);
+            mp2 = MediaPlayer.create(this, sounds[2]);
+            mp3 = MediaPlayer.create(this, sounds[3]);
+            mp4 = MediaPlayer.create(this, sounds[4]);
+            mp5 = MediaPlayer.create(this, sounds[5]);
+            mp6 = MediaPlayer.create(this, sounds[6]);
+            mp7 = MediaPlayer.create(this, sounds[7]);
+        }
+        mp.start();
+        current_frase = 0;
+        current_audio = 0;
+        f = frases[current_frase];
+        tvCuento.setText(f);
+    }
+    private void recibirDato(){
+        Bundle extras = getIntent().getExtras();
+        cs = extras.getString("cuentoseleccionado");
+
+
+        //Toast.makeText(getApplicationContext(), cs, Toast.LENGTH_LONG).show();
     }
 
-        private void reproducirAudio () {
-//        recibirDato();
-//
-//        if(cs.equals("caperucita")) { // Comparación de Cadenas con .equals
-//            Toast.makeText(getApplicationContext(), "La Caperucita Roja", Toast.LENGTH_LONG).show();
-//            int[] sounds = {
-//                    R.raw.caperucita1,
-//                    R.raw.caperucita2,
-//                    R.raw.caperucita3,
-//                    R.raw.caperucita4,
-//                    R.raw.caperucita5,
-//                    R.raw.caperucita6,
-//                    R.raw.caperucita7,
-//                    R.raw.caperucita8,
-//                    R.raw.caperucita9,
-//                    R.raw.caperucita10,
-//                    R.raw.caperucita11,
-//                    R.raw.caperucita12,
-//                    R.raw.caperucita13,
-//                    R.raw.caperucita14,
-//                    R.raw.caperucita15,
-//                    R.raw.caperucita16,
-//                    R.raw.caperucita17,
-//                    R.raw.caperucita18,
-//                    R.raw.caperucita19,
-//                    R.raw.caperucita20,
-//                    R.raw.caperucita21,
-//                    R.raw.caperucita22,
-//                    R.raw.caperucita23
-//            };
-//            for(int i=0; i <= sounds.length; i++){
-//                mp = MediaPlayer.create(this, sounds[i]);
-//                mp.start();
-//                while(mp.isPlaying()){
-//                    btnsiguiente.setEnabled(false);
-//                }
-//                mp.stop();
-//            }
-//        }
-        }
-
-        private void recibirDato(){
-            Bundle extras = getIntent().getExtras();
-            cs = extras.getString("cuentoseleccionado");
-
-
-            //Toast.makeText(getApplicationContext(), cs, Toast.LENGTH_LONG).show();
-        }
 
     @Override
     public void onClick(View v) {
+
         String color = null;
 
         switch (v.getId()){
+            case R.id.btncompr:
+                Toast.makeText(getApplicationContext(), "Presiono comp", Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.btnborrador: /*Borrador*/
+                final Dialog borrarpunto =  new Dialog(this);
+                // Toast.makeText(getApplicationContext(), "Presiono trazo", Toast.LENGTH_LONG).show();
+                borrarpunto.setTitle("Tamaño del borrado: ");
+                borrarpunto.setContentView(R.layout.tamano_punto);
+
+                TextView smallBtnBorrar = (TextView)borrarpunto.findViewById(R.id.tpequeno);
+                smallBtnBorrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Lienzo.setBorrado(true);
+                        Lienzo.setTamanoPunto(ppequeno);
+
+                        borrarpunto.dismiss();
+
+                    }
+                });
+                TextView mediumBtnBorrar = (TextView)borrarpunto.findViewById(R.id.tmediano);
+                mediumBtnBorrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Lienzo.setBorrado(true);
+                        Lienzo.setTamanoPunto(pmediano);
+
+                        borrarpunto.dismiss();
+                    }
+                });
+                TextView bigBtnBorrar = (TextView)borrarpunto.findViewById(R.id.tgrande);
+                bigBtnBorrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Lienzo.setBorrado(true);
+                        Lienzo.setTamanoPunto(pgrande);
+
+                        borrarpunto.dismiss();
+                    }
+                });
+                borrarpunto.show();
+                break;
+
+             case R.id.btntrazo: /* Tamaño de punto*/
+               final Dialog tamanopunto =  new Dialog(this);
+               // Toast.makeText(getApplicationContext(), "Presiono trazo", Toast.LENGTH_LONG).show();
+               tamanopunto.setTitle("Tamaño del punto: ");
+                tamanopunto.setContentView(R.layout.tamano_punto);
+
+                TextView smallBtn = (TextView)tamanopunto.findViewById(R.id.tpequeno);
+                smallBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Lienzo.setBorrado(false);
+                        Lienzo.setTamanoPunto(ppequeno);
+
+                        tamanopunto.dismiss();
+
+                    }
+                });
+                TextView mediumBtn = (TextView)tamanopunto.findViewById(R.id.tmediano);
+                mediumBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Lienzo.setBorrado(false);
+                        Lienzo.setTamanoPunto(pmediano);
+
+                        tamanopunto.dismiss();
+                    }
+                });
+                TextView bigBtn = (TextView)tamanopunto.findViewById(R.id.tgrande);
+                bigBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Lienzo.setBorrado(false);
+                        Lienzo.setTamanoPunto(pgrande);
+
+                        tamanopunto.dismiss();
+                    }
+                });
+                tamanopunto.show();
+                break;
+            case R.id.btnreproducir:
+                String naudio= String.valueOf(current_audio);
+                Toast.makeText(getApplicationContext(), naudio, Toast.LENGTH_LONG).show();
+                break;
+
             case R.id.btnsiguiente:
                 if(current_frase+1<frases.length){
                     if(current_frase == 0){
+                        current_audio++;
                         current_frase++;
+                        f = frases[current_frase];
+                        tvCuento.setText(f);
                         break;
                     }
                     else{
                         current_frase++;
-                        //showQuestion();
+                        current_audio++;
                         f = frases[current_frase];
                         tvCuento.setText(f);
                     }
+
+                    String cuenta= String.valueOf(current_audio);
+                    Toast.makeText(getApplicationContext(), cuenta, Toast.LENGTH_LONG).show();
+
+                    switch (current_audio) {
+                        case 1:
+                            mp.stop();
+                            mp1.start();
+                        while (mp1.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 2:
+                            mp1.stop();
+                            mp2.start();
+                        while (mp2.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 3:
+                            mp2.stop();
+                            mp3.start();
+                       while (mp3.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 4:
+                            mp3.stop();
+                            mp4.start();
+                            while (mp4.isPlaying()) {
+                                btnsiguiente.setEnabled(false);
+                            }
+                            break;
+                        case 5:
+                            mp4.stop();
+                            mp5.start();
+                       while (mp5.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 6:
+                            mp5.stop();
+                            mp6.start();
+                       while (mp6.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 7:
+                            mp6.stop();
+                            mp7.start();
+                        while (mp7.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 8:
+                            mp7.stop();
+                            mp8.start();
+                        while (mp8.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 9:
+                            mp8.stop();
+                            mp9.start();
+                        while (mp9.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 10:
+                            mp9.stop();
+                            mp10.start();
+                        while (mp10.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 11:
+                            mp10.stop();
+                            mp11.start();
+                        while (mp11.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 12:
+                            mp11.stop();
+                            mp12.start();
+                        while (mp12.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 13:
+                            mp12.stop();
+                            mp13.start();
+                        while (mp13.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 14:
+                            mp13.stop();
+                            mp14.start();
+                            Toast.makeText(getApplicationContext(), "La cuenta es "+cuenta, Toast.LENGTH_LONG).show();
+
+                       while (mp14.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 15:
+                            mp14.stop();
+                            mp15.start();
+                        while (mp15.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 16:
+                            mp15.stop();
+                            mp16.start();
+                        while (mp16.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 17:
+                            mp16.stop();
+                            mp17.start();
+                        while (mp17.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 18:
+                            mp17.stop();
+                            mp18.start();
+                        while (mp18.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 19:
+                            mp18.stop();
+                            mp19.start();
+                        while (mp19.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 20:
+                            mp19.stop();
+                            mp20.start();
+                            while (mp20.isPlaying()) {
+                                btnsiguiente.setEnabled(false);
+                            }
+                            break;
+                        case 21:
+                            mp20.stop();
+                            mp21.start();
+                        while (mp21.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                        case 22:
+                            mp21.stop();
+                            mp22.start();
+                        while (mp22.isPlaying()) {
+                            btnsiguiente.setEnabled(false);
+                        }
+                            break;
+                    }
+                    break;
+
                 }
                 else {
 
                     Toast.makeText(getApplicationContext(), "Se termino cuento", Toast.LENGTH_LONG).show();
                 }
-                current_audio++;
-
-                //String cuenta= String.valueOf(current_audio);
-              //  String tamano = String.valueOf(frases.length);
-                //Toast.makeText(getApplicationContext(), "Tamaño es "+tamano, Toast.LENGTH_LONG).show();
-                //Toast.makeText(getApplicationContext(), "La cuenta es "+cuenta, Toast.LENGTH_LONG).show();
-
-
-               // Toast.makeText(getApplicationContext(), "La cuenta es "+cuenta, Toast.LENGTH_LONG).show();
-                //
-                //reproducirAudio();
-
-                switch (current_audio) {
-                    case 1:
-                        mp.stop();
-                        mp1.start();
-                        while (mp1.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 2:
-                        mp1.stop();
-                        mp2.start();
-                        while (mp2.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 3:
-                        mp2.stop();
-                        mp3.start();
-                        while (mp3.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 4:
-                        mp3.stop();
-                        mp4.start();
-                        while (mp4.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 5:
-                        mp4.stop();
-                        mp5.start();
-                        while (mp5.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 6:
-                        mp5.stop();
-                        mp6.start();
-                        while (mp6.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 7:
-                        mp6.stop();
-                        mp7.start();
-                        while (mp7.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 8:
-                        mp7.stop();
-                        mp8.start();
-                        while (mp8.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 9:
-                        mp8.stop();
-                        mp9.start();
-                        while (mp9.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 10:
-                        mp9.stop();
-                        mp10.start();
-                        while (mp10.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 11:
-                        mp10.stop();
-                        mp11.start();
-                        while (mp11.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 12:
-                        mp11.stop();
-                        mp12.start();
-                        while (mp12.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 13:
-                        mp12.stop();
-                        mp13.start();
-                        while (mp13.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 14:
-                        mp13.stop();
-                        mp14.start();
-<<<<<<< HEAD
-                       // Toast.makeText(getApplicationContext(), "La cuenta es "+cuenta, Toast.LENGTH_LONG).show();
-=======
-                        while (mp14.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
->>>>>>> f1ad448aefe56558feca444e011280f89440f49f
-                        break;
-                    case 15:
-                        mp14.stop();
-                        mp15.start();
-                        while (mp15.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 16:
-                        mp15.stop();
-                        mp16.start();
-                        while (mp16.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 17:
-                        mp16.stop();
-                        mp17.start();
-                        while (mp17.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 18:
-                        mp17.stop();
-                        mp18.start();
-                        while (mp18.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 19:
-                        mp18.stop();
-                        mp19.start();
-                        while (mp19.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 20:
-                        mp19.stop();
-                        mp20.start();
-                        while (mp20.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 21:
-                        mp20.stop();
-                        mp21.start();
-                        while (mp21.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                    case 22:
-                        mp21.stop();
-                        mp22.start();
-                        while (mp22.isPlaying()) {
-                            btnsiguiente.setEnabled(false);
-                        }
-                        break;
-                }
-                break;
-
 
             case R.id.btnnegro:
                 color = v.getTag().toString();
