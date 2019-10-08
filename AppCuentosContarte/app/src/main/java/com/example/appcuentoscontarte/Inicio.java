@@ -166,9 +166,9 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         /*Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar); */
 
-        LinearLayout paintLayout = (LinearLayout)findViewById(R.id.paint_colors);
+      /*  LinearLayout paintLayout = (LinearLayout)findViewById(R.id.paint_colors);
         currPaint = (ImageButton)paintLayout.getChildAt(5);
-        currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
+        currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed)); */
 
 
 

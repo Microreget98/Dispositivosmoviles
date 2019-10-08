@@ -41,7 +41,7 @@
             android:contentDescription="@string/start_new"
             android:layout_width="5dp"
             android:layout_height="wrap_content"
-            android:layout_weight=".4"
+            android:layout_weight=".5"
             android:background="@drawable/hojanueva"
             android:paddingRight="25dp"
             android:layout_marginLeft="15dp"
@@ -143,7 +143,6 @@
                 android:tag="#3F51B5"
                 android:background="#3F51B5"
                 android:contentDescription="@string/paint"
-                android:onClick="paintClicked"
                 android:src="@drawable/paint"
                  />
             <ImageButton
@@ -155,7 +154,7 @@
                 android:tag="#00BCD4"
                 android:background="#00BCD4"
                 android:contentDescription="@string/paint"
-                android:onClick="paintClicked"
+
                 android:src="@drawable/paint"/>
             <ImageButton
 
@@ -167,7 +166,7 @@
                 android:tag="#009688"
                 android:background="#009688"
                 android:contentDescription="@string/paint"
-                android:onClick="paintClicked"
+
                 android:src="@drawable/paint"
                 />
 
@@ -181,7 +180,7 @@
                 android:tag="#8BC34A"
                 android:background="#8BC34A"
                 android:contentDescription="@string/paint"
-                android:onClick="paintClicked"
+
                 android:src="@drawable/paint"
                 />
             <ImageButton
@@ -194,7 +193,7 @@
                 android:tag="#4CAF50"
                 android:background="#4CAF50"
                 android:contentDescription="@string/paint"
-                android:onClick="paintClicked"
+
                 android:src="@drawable/paint"
                 />
             <ImageButton
@@ -231,7 +230,7 @@
                 android:tag="#9C27B0"
                 android:background="#9C27B0"
                 android:contentDescription="@string/paint"
-                android:onClick="paintClicked"
+
                 android:src="@drawable/paint"
                 />
             <ImageButton
@@ -243,7 +242,7 @@
                 android:tag="#E91E63"
                 android:background="#E91E63"
                 android:contentDescription="@string/paint"
-                android:onClick="paintClicked"
+
                 android:src="@drawable/paint"/>
             <ImageButton
 
@@ -255,7 +254,7 @@
                 android:tag="#F44336"
                 android:background="#F44336"
                 android:contentDescription="@string/paint"
-                android:onClick="paintClicked"
+
                 android:src="@drawable/paint"
                 />
 
@@ -268,7 +267,7 @@
                 android:tag="#FF9800"
                 android:background="#FF9800"
                 android:contentDescription="@string/paint"
-                android:onClick="paintClicked"
+
                 android:src="@drawable/paint"
                 />
             <ImageButton
@@ -280,7 +279,7 @@
                 android:tag="#8B674D"
                 android:background="#8B674D"
                 android:contentDescription="@string/paint"
-                android:onClick="paintClicked"
+
                 android:src="@drawable/paint"
                 />
             <ImageButton
@@ -292,9 +291,11 @@
                 android:tag="#353535"
                 android:background="#353535"
                 android:contentDescription="@string/paint"
-                android:onClick="paintClicked"
+
                 android:src="@drawable/paint"
                 />
+
+            <!--android:onClick="paintClicked" -->
 
         </LinearLayout>
     </LinearLayout>
