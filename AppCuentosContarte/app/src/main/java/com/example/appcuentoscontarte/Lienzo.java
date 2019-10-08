@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import android.graphics.Path;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -89,6 +90,8 @@ public class Lienzo extends View {
         invalidate();
         paintColor = Color.parseColor(newColor);
         drawPaint.setColor(paintColor);
+
+
     }
 
     //Pinta la vista. Será llamado desde el OnTouchEvent
@@ -117,5 +120,10 @@ public class Lienzo extends View {
 
         }
 
+    }
+
+    public void NuevoDibujo(){
+        drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+        invalidate();
     }
 }
