@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -18,6 +19,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -57,7 +59,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     ImageButton negro, cafe, naranja,rojo, rosa, morado, amarillo,verdelimon, verde,turquesa, celeste, azul;
     MediaPlayer mp,mp1,mp2,mp3,mp4,mp5,mp6,mp7,mp8,mp9,mp10,mp11,mp12,mp13,mp14,mp15,mp16,mp17,mp18,mp19,mp20,mp21,mp22;
     ImageButton btnreproducir, btnsiguiente,btnborrador, btntrazo, btnhojanueva, btnguardar;
-    Button btncompr;
+    Button btncompr, btnss;
     TextView tvCuento;
     private int current_frase, current_audio, control;
 
@@ -154,7 +156,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         }
 
         //codigo adicional
-        // this.finish();
     }
 
 
@@ -178,6 +179,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         btnborrador = (ImageButton)findViewById(R.id.btnborrador);
         btnguardar = (ImageButton)findViewById(R.id.btnguardar);
         btnhojanueva = (ImageButton)findViewById(R.id.btnhojanueva);
+        btnss = (Button)findViewById(R.id.btnscreenshot);
 
         tvCuento = (TextView) findViewById(R.id.tvCuento);
 
@@ -213,14 +215,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         turquesa.setOnClickListener(this);
         celeste.setOnClickListener(this);
         azul.setOnClickListener(this);
-
-    /*    negro.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                return false;
-            }
-        });*/
 
         btnsiguiente.setOnClickListener(this);
         btnreproducir.setOnClickListener(this);
@@ -263,21 +257,21 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
             mp22 = MediaPlayer.create(this, sounds[22]);
 
         }
-        if(cs.equals("pollitocurioso")) {
-            Toast.makeText(getApplicationContext(), "El Pollito Curioso", Toast.LENGTH_LONG).show();
-            int[] sounds = {R.raw.pollitocurioso1, R.raw.pollitocurioso2, R.raw.pollitocurioso3, R.raw.pollitocurioso4, R.raw.pollitocurioso5,R.raw.pollitocurioso6,R.raw.pollitocurioso7,R.raw.pollitocurioso8};
-
-            frases = getResources().getStringArray(R.array.cuento2);
-
-            mp = MediaPlayer.create(this, sounds[0]);
-            mp1 = MediaPlayer.create(this, sounds[1]);
-            mp2 = MediaPlayer.create(this, sounds[2]);
-            mp3 = MediaPlayer.create(this, sounds[3]);
-            mp4 = MediaPlayer.create(this, sounds[4]);
-            mp5 = MediaPlayer.create(this, sounds[5]);
-            mp6 = MediaPlayer.create(this, sounds[6]);
-            mp7 = MediaPlayer.create(this, sounds[7]);
-        }
+//        if(cs.equals("pollitocurioso")) {
+//            Toast.makeText(getApplicationContext(), "El Pollito Curioso", Toast.LENGTH_LONG).show();
+//            int[] sounds = {R.raw.pollitocurioso1, R.raw.pollitocurioso2, R.raw.pollitocurioso3, R.raw.pollitocurioso4, R.raw.pollitocurioso5,R.raw.pollitocurioso6,R.raw.pollitocurioso7,R.raw.pollitocurioso8};
+//
+//            frases = getResources().getStringArray(R.array.cuento2);
+//
+//            mp = MediaPlayer.create(this, sounds[0]);
+//            mp1 = MediaPlayer.create(this, sounds[1]);
+//            mp2 = MediaPlayer.create(this, sounds[2]);
+//            mp3 = MediaPlayer.create(this, sounds[3]);
+//            mp4 = MediaPlayer.create(this, sounds[4]);
+//            mp5 = MediaPlayer.create(this, sounds[5]);
+//            mp6 = MediaPlayer.create(this, sounds[6]);
+//            mp7 = MediaPlayer.create(this, sounds[7]);
+//        }
 
         //***********Inicialización**************
 
@@ -370,6 +364,11 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         String color = null;
 
         switch (v.getId()){
+
+            case R.id.btnscreenshot:
+                View rootView = getWindow().getDecorView().findViewById(R.id.lienzo);
+                Bitmap bitmap = getscreenshot(rootView);
+                store(bitmap, "1.png");
 
             case R.id.btnhojanueva:
                 AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
@@ -465,9 +464,9 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 salvarDibujo.show();
                 break;
 
-            case R.id.btncompr:
-                Toast.makeText(getApplicationContext(), "Presiono comp", Toast.LENGTH_LONG).show();
-                break;
+//            case R.id.btncompr:
+//                Toast.makeText(getApplicationContext(), "Presiono comp", Toast.LENGTH_LONG).show();
+//                break;
 
             case R.id.btnborrador: /*Borrador*/
                 final Dialog borrarpunto =  new Dialog(this);
@@ -796,5 +795,35 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         btnsiguiente.setEnabled(true);
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
+    public static Bitmap getscreenshot (View view){
+        View screenView = view.getRootView();
+        screenView.setDrawingCacheEnabled(true);
+        Bitmap bitmap = Bitmap.createBitmap(screenView.getDrawingCache());
+        screenView.setDrawingCacheEnabled(false);
+        return bitmap;
+    }
+
+    public void store (Bitmap bm, String fieldName){
+        String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Prueba";
+        File dir = new File(dirPath);
+        if (!dir.exists()){
+            dir.mkdirs();
+        }
+        File file = new File(dirPath, fieldName);
+        try{
+            FileOutputStream fos = new FileOutputStream(file);
+            bm.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            Toast.makeText(this, "Guardado", Toast.LENGTH_LONG).show();
+            fos.flush();
+            fos.close();
+        } catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
+        }
+    }
 }

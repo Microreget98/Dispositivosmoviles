@@ -62,7 +62,12 @@
             android:text="COMP"
             android:visibility="invisible" />
 
-
+        <Button
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnscreenshot"
+            android:layout_weight=".8"
+            android:text="ss"/>
 
         <ImageButton
             android:contentDescription="@string/erase"
@@ -72,6 +77,7 @@
             android:layout_weight=".7"
             android:background="@drawable/borrador"
             android:paddingRight="25dp"/>
+
 
         <ImageButton
             android:contentDescription="@string/brush"
@@ -93,7 +99,6 @@
 
             android:visibility="invisible" />
 
-
         <ImageButton
             android:id="@+id/btnsiguiente"
             android:layout_width="5dp"
@@ -103,6 +108,8 @@
             android:background="@drawable/flechasig"
             android:text="SIGUIENTE"
             />
+
+
 
 
     </LinearLayout>
