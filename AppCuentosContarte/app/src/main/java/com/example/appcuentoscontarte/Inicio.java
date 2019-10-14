@@ -473,7 +473,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
                      //   startSave();
 
-                        LinearLayout savingLayout =(LinearLayout) findViewById(R.id.screen);
+                        View savingLayout =(View) findViewById(R.id.lienzo);
                         File file = saveBitMap(Inicio.this, savingLayout);
                         if (file!= null) {
                             Toast.makeText(getApplicationContext(), "¡Dibujo guardado en la galería!", Toast.LENGTH_LONG).show();
