@@ -70,7 +70,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
     private String[] frases;
     private  String f, a;
-    int[] sounds;
+    int sound;
 
     int k;
     int current;
@@ -227,34 +227,8 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         if (cs.equals("caperucita")) { // Comparación de Cadenas con .equals
             Toast.makeText(getApplicationContext(), "La Caperucita Roja", Toast.LENGTH_LONG).show();
-            int[] sounds = {R.raw.caperucita1, R.raw.caperucita2, R.raw.caperucita3, R.raw.caperucita4, R.raw.caperucita5, R.raw.caperucita6, R.raw.caperucita7, R.raw.caperucita8, R.raw.caperucita9, R.raw.caperucita10, R.raw.caperucita11, R.raw.caperucita12, R.raw.caperucita13, R.raw.caperucita14, R.raw.caperucita15, R.raw.caperucita16, R.raw.caperucita17, R.raw.caperucita18, R.raw.caperucita19, R.raw.caperucita20, R.raw.caperucita21, R.raw.caperucita22, R.raw.caperucita23};
-
+            sound = R.raw.Caperucita;
             frases = getResources().getStringArray(R.array.cuento1);
-
-            mp = MediaPlayer.create(this, sounds[0]);
-            mp1 = MediaPlayer.create(this, sounds[1]);
-            mp2 = MediaPlayer.create(this, sounds[2]);
-            mp3 = MediaPlayer.create(this, sounds[3]);
-            mp4 = MediaPlayer.create(this, sounds[4]);
-            mp5 = MediaPlayer.create(this, sounds[5]);
-            mp6 = MediaPlayer.create(this, sounds[6]);
-            mp7 = MediaPlayer.create(this, sounds[7]);
-            mp8 = MediaPlayer.create(this, sounds[8]);
-            mp9 = MediaPlayer.create(this, sounds[9]);
-            mp10 = MediaPlayer.create(this, sounds[10]);
-            mp11 = MediaPlayer.create(this, sounds[11]);
-            mp12 = MediaPlayer.create(this, sounds[12]);
-            mp13 = MediaPlayer.create(this, sounds[13]);
-
-            mp14 = MediaPlayer.create(this, sounds[14]);
-            mp15 = MediaPlayer.create(this, sounds[15]);
-            mp16 = MediaPlayer.create(this, sounds[16]);
-            mp17 = MediaPlayer.create(this, sounds[17]);
-            mp18 = MediaPlayer.create(this, sounds[18]);
-            mp19 = MediaPlayer.create(this, sounds[19]);
-            mp20 = MediaPlayer.create(this, sounds[20]);
-            mp21 = MediaPlayer.create(this, sounds[21]);
-            mp22 = MediaPlayer.create(this, sounds[22]);
 
         }
 //        if(cs.equals("pollitocurioso")) {
@@ -366,9 +340,8 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         switch (v.getId()){
 
             case R.id.btnscreenshot:
-                View rootView = getWindow().getDecorView().findViewById(R.id.lienzo);
-                Bitmap bitmap = getscreenshot(rootView);
-                store(bitmap, "1.png");
+                screenShot();
+                break;
 
             case R.id.btnhojanueva:
                 AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
@@ -798,32 +771,5 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
-    public static Bitmap getscreenshot (View view){
-        View screenView = view.getRootView();
-        screenView.setDrawingCacheEnabled(true);
-        Bitmap bitmap = Bitmap.createBitmap(screenView.getDrawingCache());
-        screenView.setDrawingCacheEnabled(false);
-        return bitmap;
-    }
-
-    public void store (Bitmap bm, String fieldName){
-        String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Prueba";
-        File dir = new File(dirPath);
-        if (!dir.exists()){
-            dir.mkdirs();
-        }
-        File file = new File(dirPath, fieldName);
-        try{
-            FileOutputStream fos = new FileOutputStream(file);
-            bm.compress(Bitmap.CompressFormat.PNG, 100, fos);
-            Toast.makeText(this, "Guardado", Toast.LENGTH_LONG).show();
-            fos.flush();
-            fos.close();
-        } catch (Exception e){
-            e.printStackTrace();
-            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show();
-        }
     }
 }

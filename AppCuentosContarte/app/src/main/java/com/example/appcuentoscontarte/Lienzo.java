@@ -9,11 +9,15 @@ import android.graphics.Paint;
 
 import android.graphics.Path;
 import android.graphics.PorterDuff;
+import android.os.Environment;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 
 public class Lienzo extends View {
@@ -54,9 +58,9 @@ public class Lienzo extends View {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-            super.onSizeChanged(w, h, oldw, oldh);
-            canvasBitmap = Bitmap.createBitmap(w,h,Bitmap.Config.ARGB_8888);
-            drawCanvas = new Canvas(canvasBitmap);
+        super.onSizeChanged(w, h, oldw, oldh);
+        canvasBitmap = Bitmap.createBitmap(w,h,Bitmap.Config.ARGB_8888);
+        drawCanvas = new Canvas(canvasBitmap);
     }
 
     @Override

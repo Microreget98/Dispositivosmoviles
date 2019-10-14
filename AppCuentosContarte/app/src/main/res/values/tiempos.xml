@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="Caperucita">
+        <item>0</item>
+        <item>3000</item>
+        <item>4000</item>
+        <item>16000</item>
+        <item>26000</item>
+        <item>37000</item>
+        <item>46000</item>
+        <item>53000</item>
+        <item>60000</item>
+        <item>67000</item>
+        <item>73000</item>
+        <item>82000</item>
+        <item>89000</item>
+        <item>95000</item>
+        <item>102000</item>
+        <item>111000</item>
+        <item>117000</item>
+        <item>125000</item>
+        <item>131000</item>
+        <item>138000</item>
+        <item>149000</item>
+        <item>160000</item>
+        <item>168000</item>
+        <item>174000</item>
+        <item>191000</item>
+    </array>
+</resources>
