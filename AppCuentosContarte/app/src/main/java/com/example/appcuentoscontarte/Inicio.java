@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,6 +15,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.media.MediaPlayer;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
@@ -290,7 +292,79 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         tvCuento.setText(f);
         mp.start();
     }
+// BITMAP
 
+
+    private Bitmap getBitmapFromView(View view) {
+        //Define a bitmap with the same size as the view
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
+        //Bind a canvas to it
+        Canvas scanvas = new Canvas(returnedBitmap);
+        //Get the view's background
+        Drawable bgDrawable =view.getBackground();
+        if (bgDrawable!=null) {
+            //has background drawable, then draw it on the canvas
+           //Toast.makeText(getApplicationContext(), " tiene dibujable", Toast.LENGTH_LONG).show();
+            bgDrawable.draw(scanvas);
+        }   else{
+            //does not have background drawable, then draw white background on the canvas
+            scanvas.drawColor(Color.WHITE);
+        }
+        // draw the view on the canvas
+        view.draw(scanvas);
+        //return the bitmap
+        return returnedBitmap;
+    }
+
+    private File saveBitMap(Context context, View drawView){
+
+        File pictureFileDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
+        if (!pictureFileDir.exists()) {
+            //Toast.makeText(getApplicationContext(), " NO Sigue", Toast.LENGTH_LONG).show();
+            boolean isDirectoryCreated = pictureFileDir.mkdirs();
+            if(!isDirectoryCreated)
+                 //Toast.makeText(getApplicationContext(), "  No se pudo crear directorio", Toast.LENGTH_LONG).show();
+                Log.i("TAG", "Can't create directory to save the image");
+            return null;
+        }
+
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyymmsshhmmss");
+        String date= simpleDateFormat.format(new Date());
+        String name ="Img"+date+".jpg";
+        String filename=pictureFileDir.getPath()+"/"+name;
+        if(filename!=null){
+           // Toast.makeText(getApplicationContext(), "Nombre archivo: "+filename, Toast.LENGTH_LONG).show();
+        }
+
+        File pictureFile = new File(filename);
+        Bitmap sbitmap =getBitmapFromView(drawView);
+        try {
+            pictureFile.createNewFile();
+           // Toast.makeText(getApplicationContext(), " Se creó imagen 2", Toast.LENGTH_LONG).show();
+            FileOutputStream oStream = new FileOutputStream(pictureFile);
+            sbitmap.compress(Bitmap.CompressFormat.PNG, 100, oStream);
+            oStream.flush();
+            oStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            //Toast.makeText(getApplicationContext(), " No se creó imagen", Toast.LENGTH_LONG).show();
+            Log.i("TAG", "There was an issue saving the image.");
+        }
+        scanGallery( context,pictureFile.getAbsolutePath());
+        return pictureFile;
+    }
+
+    private void scanGallery(Context cntx, String path) {
+        try {
+            MediaScannerConnection.scanFile(cntx, new String[]{path}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                public void onScanCompleted(String path, Uri uri) {
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.i("TAG", "There was an issue scanning gallery.");
+        }
+    }
 
     private void recibirDato(){
         Bundle extras = getIntent().getExtras();
@@ -299,7 +373,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         //Toast.makeText(getApplicationContext(), cs, Toast.LENGTH_LONG).show();
     }
-
+/*
     public static  Bitmap viewToBitmap(View view,int width, int height){
         Bitmap bitmap = Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
@@ -350,12 +424,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
     }
 
-
-
-
-
-
-
+ */
 
 
 
@@ -401,8 +470,20 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 salvarDibujo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        View v1 = getWindow().getDecorView().getRootView();
-                        startSave();
+
+                     //   startSave();
+
+                        LinearLayout savingLayout =(LinearLayout) findViewById(R.id.screen);
+                        File file = saveBitMap(Inicio.this, savingLayout);
+                        if (file!= null) {
+                            Toast.makeText(getApplicationContext(), "¡Dibujo guardado en la galería!", Toast.LENGTH_LONG).show();
+
+                            Log.i("TAG", "Drawing saved to the gallery!");
+                        } else {
+                            Toast.makeText(getApplicationContext(), "¡ Oops, dibujo  no se ha guardado en la galería!", Toast.LENGTH_LONG).show();
+
+                            Log.i("TAG", "Oops! Image could not be saved.");
+                        }
 
                         //takeScreenShot(v1);
                         // PixelShot.of(v1).setResultListener(this).save();

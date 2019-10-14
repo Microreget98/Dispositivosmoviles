@@ -8,6 +8,7 @@
     android:paddingTop="3dp"
     android:paddingBottom="3dp"
     tools:context=".Inicio"
+    android:id="@+id/screen"
     android:background="@android:color/darker_gray">
     <!--android:background="@android:color/darker_gray">-->
 
@@ -60,7 +61,7 @@
             android:background="@drawable/guardar"
             android:paddingRight="25dp"
             android:text="COMP"
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
 
 
