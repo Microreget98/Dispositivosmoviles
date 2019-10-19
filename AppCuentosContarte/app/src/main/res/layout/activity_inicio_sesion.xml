@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".InicioSesion">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradiente"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="20dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/logocontarte"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="20dp">
+
+            <LinearLayout
+               android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/colorCeleste">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorAmarillo"
+                    android:textSize="50dp"
+                    android:textStyle="bold"
+                    android:text="INICIO DE SESIÓN"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginBottom="20sp"
+                    >
+
+                </TextView>
+
+                <EditText
+                    android:id="@+id/etUsuario"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:hint="Ingrese su usuario"
+                    android:layout_gravity="center"
+                    android:textColor="@color/colorBlanco"
+                    android:textColorHint="@color/colorBlanco"
+                    android:backgroundTint="@android:color/white"
+                    />
+
+                <EditText
+                    android:id="@+id/etClave"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@android:color/white"
+                    android:hint="Ingrese su clave"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorBlanco"
+                    android:textColorHint="@color/colorBlanco"
+                    />
+
+                <Button
+                    android:id="@+id/btnIngresar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="INGRESAR"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20sp"
+                    android:background="@drawable/btnredondo_amarillo"
+                    android:textColor="@color/colorPrimaryDark"
+                    />
+
+                <Button
+                    android:id="@+id/btnRegistrar_login"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_height="wrap_content"
+                    android:text="REGISTRAR"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20sp"
+                    android:background="@drawable/btnredondo_amarillo"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_marginBottom="20sp"
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</LinearLayout>
