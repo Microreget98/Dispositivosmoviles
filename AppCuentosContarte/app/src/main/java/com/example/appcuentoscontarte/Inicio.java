@@ -57,9 +57,8 @@ import java.util.UUID;
 public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
     ImageButton negro, cafe, naranja,rojo, rosa, morado, amarillo,verdelimon, verde,turquesa, celeste, azul;
-    MediaPlayer mp,mp1,mp2,mp3,mp4,mp5,mp6,mp7,mp8,mp9,mp10,mp11,mp12,mp13,mp14,mp15,mp16,mp17,mp18,mp19,mp20,mp21,mp22;
+    MediaPlayer mp;
     ImageButton btnreproducir, btnsiguiente,btnborrador, btntrazo, btnhojanueva, btnguardar;
-    Button btncompr, btnss;
     TextView tvCuento;
     private int current_frase, current_audio, control;
 
@@ -83,95 +82,9 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     private ImageButton currPaint;
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        if(mp.isPlaying()){
-            mp.stop();
-        }
-        if(mp1.isPlaying()){
-            mp1.stop();
-        }
-        if(mp2.isPlaying()){
-            mp2.stop();
-        }
-        if(mp3.isPlaying()){
-            mp3.stop();
-        }
-        if(mp4.isPlaying()){
-            mp4.stop();
-        }
-        if(mp5.isPlaying()){
-            mp5.stop();
-        }
-        if(mp6.isPlaying()){
-            mp6.stop();
-        }
-        if(mp7.isPlaying()){
-            mp7.stop();
-        }
-        if(mp8.isPlaying()){
-            mp8.stop();
-        }
-        if(mp9.isPlaying()){
-            mp9.stop();
-        }
-        if(mp10.isPlaying()){
-            mp10.stop();
-        }
-        if(mp11.isPlaying()){
-            mp11.stop();
-        }
-        if(mp12.isPlaying()){
-            mp12.stop();
-        }
-        if(mp13.isPlaying()){
-            mp13.stop();
-        }
-        if(mp14.isPlaying()){
-            mp14.stop();
-        }
-        if(mp15.isPlaying()){
-            mp15.stop();
-        }
-        if(mp16.isPlaying()){
-            mp16.stop();
-        }
-        if(mp17.isPlaying()){
-            mp17.stop();
-        }
-        if(mp18.isPlaying()){
-            mp18.stop();
-        }
-        if(mp19.isPlaying()){
-            mp19.stop();
-        }
-        if(mp20.isPlaying()){
-            mp20.stop();
-        }
-        if(mp21.isPlaying()){
-            mp21.stop();
-        }
-        if(mp22.isPlaying()){
-            mp22.stop();
-        }
-
-        //codigo adicional
-    }
-
-
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
-        /*Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar); */
-
-      /*  LinearLayout paintLayout = (LinearLayout)findViewById(R.id.paint_colors);
-        currPaint = (ImageButton)paintLayout.getChildAt(5);
-        currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed)); */
-
-
 
         btnreproducir = (ImageButton) findViewById(R.id.btnreproducir);
         btnsiguiente = (ImageButton) findViewById(R.id.btnsiguiente);
@@ -179,7 +92,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         btnborrador = (ImageButton)findViewById(R.id.btnborrador);
         btnguardar = (ImageButton)findViewById(R.id.btnguardar);
         btnhojanueva = (ImageButton)findViewById(R.id.btnhojanueva);
-        btnss = (Button)findViewById(R.id.btnscreenshot);
 
         tvCuento = (TextView) findViewById(R.id.tvCuento);
 
@@ -231,23 +143,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
             frases = getResources().getStringArray(R.array.cuento1);
 
         }
-//        if(cs.equals("pollitocurioso")) {
-//            Toast.makeText(getApplicationContext(), "El Pollito Curioso", Toast.LENGTH_LONG).show();
-//            int[] sounds = {R.raw.pollitocurioso1, R.raw.pollitocurioso2, R.raw.pollitocurioso3, R.raw.pollitocurioso4, R.raw.pollitocurioso5,R.raw.pollitocurioso6,R.raw.pollitocurioso7,R.raw.pollitocurioso8};
-//
-//            frases = getResources().getStringArray(R.array.cuento2);
-//
-//            mp = MediaPlayer.create(this, sounds[0]);
-//            mp1 = MediaPlayer.create(this, sounds[1]);
-//            mp2 = MediaPlayer.create(this, sounds[2]);
-//            mp3 = MediaPlayer.create(this, sounds[3]);
-//            mp4 = MediaPlayer.create(this, sounds[4]);
-//            mp5 = MediaPlayer.create(this, sounds[5]);
-//            mp6 = MediaPlayer.create(this, sounds[6]);
-//            mp7 = MediaPlayer.create(this, sounds[7]);
-//        }
-
-        //***********Inicialización**************
 
         control=0;
         current_frase = 0;
@@ -323,7 +218,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         if(view!=currPaint){
             //update color
-
             ImageButton imgView = (ImageButton)view;
             String color = view.getTag().toString();
             Toast.makeText(getApplicationContext(), "¡Cambiar!", Toast.LENGTH_LONG).show();
@@ -337,11 +231,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         String color = null;
 
-        switch (v.getId()){
-
-            case R.id.btnscreenshot:
-                screenShot();
-                break;
+        switch (v.getId()) {
 
             case R.id.btnhojanueva:
                 AlertDialog.Builder newDialog = new AlertDialog.Builder(this);
@@ -366,7 +256,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 newDialog.show();
 
 
-
                 break;
 
             case R.id.btnguardar:
@@ -379,51 +268,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                     public void onClick(DialogInterface dialog, int which) {
                         View v1 = getWindow().getDecorView().getRootView();
                         startSave();
-
-                        //takeScreenShot(v1);
-                        // PixelShot.of(v1).setResultListener(this).save();
-
-
-
-
-/*
-                        try {
-                            lienzo.setDrawingCacheEnabled(true);
-                            Bitmap bitmap = lienzo.getDrawingCache();
-                            File f = null;
-                            if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-                                File file = new File(Environment.getExternalStorageDirectory(),"TTImages_cache");
-                                if(!file.exists()){
-                                    file.mkdirs();
-                                }
-                                f = new File(file.getAbsolutePath()+file.separator+ "filename"+".png");
-                            }
-                            FileOutputStream ostream = new FileOutputStream(f);
-                            bitmap.compress(Bitmap.CompressFormat.PNG, 10, ostream);
-                            Toast.makeText(getApplicationContext(), "¡Dibujo guardado en la galería!", Toast.LENGTH_LONG).show();
-
-                            ostream.close();
-                        } catch(Exception e){
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "¡opps!", Toast.LENGTH_LONG).show();
-                        } */
-
-
-                       /* lienzo.setDrawingCacheEnabled(true);
-
-                        String imgSaved = MediaStore.Images.Media.insertImage(
-                                getContentResolver(), lienzo.getDrawingCache(),
-                                UUID.randomUUID().toString()+"png","drawing");
-                        if(imgSaved!=null){
-                            Toast.makeText(getApplicationContext(), "¡Dibujo guardado en la galería!", Toast.LENGTH_LONG).show();
-
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(), "¡Error!, no se ha guardado correctamente", Toast.LENGTH_LONG).show();
-
-                        }
-                        lienzo.destroyDrawingCache(); */
-
                     }
                 });
                 salvarDibujo.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -437,17 +281,12 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 salvarDibujo.show();
                 break;
 
-//            case R.id.btncompr:
-//                Toast.makeText(getApplicationContext(), "Presiono comp", Toast.LENGTH_LONG).show();
-//                break;
-
             case R.id.btnborrador: /*Borrador*/
-                final Dialog borrarpunto =  new Dialog(this);
-                // Toast.makeText(getApplicationContext(), "Presiono trazo", Toast.LENGTH_LONG).show();
+                final Dialog borrarpunto = new Dialog(this);
                 borrarpunto.setTitle("Tamaño del borrado: ");
                 borrarpunto.setContentView(R.layout.tamano_punto);
 
-                TextView smallBtnBorrar = (TextView)borrarpunto.findViewById(R.id.tpequeno);
+                TextView smallBtnBorrar = (TextView) borrarpunto.findViewById(R.id.tpequeno);
                 smallBtnBorrar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -458,7 +297,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
                     }
                 });
-                TextView mediumBtnBorrar = (TextView)borrarpunto.findViewById(R.id.tmediano);
+                TextView mediumBtnBorrar = (TextView) borrarpunto.findViewById(R.id.tmediano);
                 mediumBtnBorrar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -468,7 +307,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                         borrarpunto.dismiss();
                     }
                 });
-                TextView bigBtnBorrar = (TextView)borrarpunto.findViewById(R.id.tgrande);
+                TextView bigBtnBorrar = (TextView) borrarpunto.findViewById(R.id.tgrande);
                 bigBtnBorrar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -482,12 +321,12 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 break;
 
             case R.id.btntrazo: /* Tamaño de punto*/
-                final Dialog tamanopunto =  new Dialog(this);
+                final Dialog tamanopunto = new Dialog(this);
                 // Toast.makeText(getApplicationContext(), "Presiono trazo", Toast.LENGTH_LONG).show();
                 tamanopunto.setTitle("Tamaño del punto: ");
                 tamanopunto.setContentView(R.layout.tamano_punto);
 
-                TextView smallBtn = (TextView)tamanopunto.findViewById(R.id.tpequeno);
+                TextView smallBtn = (TextView) tamanopunto.findViewById(R.id.tpequeno);
                 smallBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -498,7 +337,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
                     }
                 });
-                TextView mediumBtn = (TextView)tamanopunto.findViewById(R.id.tmediano);
+                TextView mediumBtn = (TextView) tamanopunto.findViewById(R.id.tmediano);
                 mediumBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -509,7 +348,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                         tamanopunto.dismiss();
                     }
                 });
-                TextView bigBtn = (TextView)tamanopunto.findViewById(R.id.tgrande);
+                TextView bigBtn = (TextView) tamanopunto.findViewById(R.id.tgrande);
                 bigBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -523,195 +362,12 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 tamanopunto.show();
                 break;
             case R.id.btnreproducir:
-                String naudio= String.valueOf(current_audio);
+                String naudio = String.valueOf(current_audio);
                 Toast.makeText(getApplicationContext(), naudio, Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.btnsiguiente:
-
-                current=0;
-
-                if(control<frases.length){
-                    control++;
-                    f = frases[control];
-                    tvCuento.setText(f);
-                    current=1;
-
-                    if(current!=0){
-
-                        switch (control) {
-                            case 1:
-                                mp.stop();
-                                mp1.start();
-                                while (mp1.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 2:
-                                mp1.stop();
-                                mp2.start();
-                                while (mp2.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 3:
-                                mp2.stop();
-                                mp3.start();
-                                while (mp3.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 4:
-                                mp3.stop();
-                                mp4.start();
-                                while (mp4.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 5:
-                                mp4.stop();
-                                mp5.start();
-                                while (mp5.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 6:
-                                mp5.stop();
-                                mp6.start();
-                                while (mp6.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 7:
-                                mp6.stop();
-                                mp7.start();
-                                while (mp7.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 8:
-                                mp7.stop();
-                                mp8.start();
-                                while (mp8.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 9:
-                                mp8.stop();
-                                mp9.start();
-                                while (mp9.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 10:
-                                mp9.stop();
-                                mp10.start();
-                                while (mp10.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 11:
-                                mp10.stop();
-                                mp11.start();
-                                while (mp11.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 12:
-                                mp11.stop();
-                                mp12.start();
-                                while (mp12.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 13:
-                                mp12.stop();
-                                mp13.start();
-                                while (mp13.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 14:
-                                mp13.stop();
-                                mp14.start();
-                                Toast.makeText(getApplicationContext(), "La cuenta es " + control, Toast.LENGTH_LONG).show();
-
-                                while (mp14.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 15:
-                                mp14.stop();
-                                mp15.start();
-                                Toast.makeText(getApplicationContext(), "La cuenta es " + control, Toast.LENGTH_LONG).show();
-                                while (mp15.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 16:
-                                mp15.stop();
-                                mp16.start();
-                                Toast.makeText(getApplicationContext(), "La cuenta es " + control, Toast.LENGTH_LONG).show();
-                                while (mp16.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 17:
-                                mp16.stop();
-                                mp17.start();
-                                Toast.makeText(getApplicationContext(), "La cuenta es " + control, Toast.LENGTH_LONG).show();
-                                while (mp17.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 18:
-                                mp17.stop();
-                                mp18.start();
-                                Toast.makeText(getApplicationContext(), "La cuenta es " + control, Toast.LENGTH_LONG).show();
-                                while (mp18.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 19:
-                                mp18.stop();
-                                mp19.start();
-                                Toast.makeText(getApplicationContext(), "La cuenta es " + control, Toast.LENGTH_LONG).show();
-                                while (mp19.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 20:
-                                mp19.stop();
-                                mp20.start();
-                                Toast.makeText(getApplicationContext(), "La cuenta es " + control, Toast.LENGTH_LONG).show();
-                                while (mp20.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 21:
-                                mp20.stop();
-                                mp21.start();
-                                Toast.makeText(getApplicationContext(), "La cuenta es " + control, Toast.LENGTH_LONG).show();
-                                while (mp21.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                            case 22:
-                                mp21.stop();
-                                mp22.start();
-                                Toast.makeText(getApplicationContext(), "La cuenta es " + control, Toast.LENGTH_LONG).show();
-                                while (mp22.isPlaying()) {
-                                    btnsiguiente.setEnabled(false);
-                                }
-                                break;
-                        }
-                        break;
-                    }
-                }
-                else {
-
-                    Toast.makeText(getApplicationContext(), "Se termino cuento", Toast.LENGTH_LONG).show();
-                }
+                mp = MediaPlayer.create();
 
             case R.id.btnnegro:
                 color = v.getTag().toString();
@@ -765,11 +421,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 break;
 
         }
-        btnsiguiente.setEnabled(true);
-    }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }
