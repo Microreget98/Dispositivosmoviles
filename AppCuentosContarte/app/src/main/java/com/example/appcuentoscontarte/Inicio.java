@@ -61,7 +61,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     ImageButton btnreproducir, btnsiguiente,btnborrador, btntrazo, btnhojanueva, btnguardar;
     TextView tvCuento;
     private int current_frase, current_audio, control;
-    private int[] tempo;
 
     float ppequeno;
     float pmediano;
@@ -69,6 +68,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     float pdefecto;
 
     private String[] frases;
+    private int[] tiempos;
     private  String f, a;
     int sound;
 
@@ -142,8 +142,8 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(getApplicationContext(), "La Caperucita Roja", Toast.LENGTH_LONG).show();
             sound = R.raw.Caperucita;
             frases = getResources().getStringArray(R.array.cuento1);
+            tiempos = getResources().getIntArray(R.array.tiemposcaperucita);
             mp = MediaPlayer.create(this, sound);
-            String[] tiempos = R.id.tiemposcaperucita;
         }
 
         control=0;
@@ -369,7 +369,16 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 break;
 
             case R.id.btnsiguiente:
-                mp = MediaPlayer.create();
+                mp = MediaPlayer.create(this, sound );
+                mp.start();
+                int i = 0, currenttiempo = 0;
+                while (mp.isPlaying()){
+                    currenttiempo = mp.getCurrentPosition();
+                    if(currenttiempo == tiempos[i]){
+                        mp.pause();
+                    }
+                }
+                break;
 
             case R.id.btnnegro:
                 color = v.getTag().toString();
