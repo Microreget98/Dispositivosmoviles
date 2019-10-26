@@ -70,7 +70,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     private String[] frases;
     private int[] tiempos;
     private  String f, a;
-    int sound;
+    int sound, i = 0, currentiempo = 0;
 
     int k;
     int current;
@@ -140,7 +140,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         if (cs.equals("caperucita")) { // Comparación de Cadenas con .equals
             Toast.makeText(getApplicationContext(), "La Caperucita Roja", Toast.LENGTH_LONG).show();
-            sound = R.raw.Caperucita;
+            sound = R.raw.caperucita;
             frases = getResources().getStringArray(R.array.cuento1);
             tiempos = getResources().getIntArray(R.array.tiemposcaperucita);
             mp = MediaPlayer.create(this, sound);
@@ -151,7 +151,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         current_audio = 0;
         f = frases[current_frase];
         tvCuento.setText(f);
-        mp.start();
+
     }
 
 
@@ -369,15 +369,23 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 break;
 
             case R.id.btnsiguiente:
-                mp = MediaPlayer.create(this, sound );
-                mp.start();
-                int i = 0, currenttiempo = 0;
-                while (mp.isPlaying()){
-                    currenttiempo = mp.getCurrentPosition();
-                    if(currenttiempo == tiempos[i]){
-                        mp.pause();
+                if(i == 0){
+                    mp.start();
+                }
+                else{
+                    if(!mp.isPlaying() && i > 0){
+                        mp.seekTo(tiempos[i-1]);
+                        mp.start();
                     }
                 }
+                while (mp.isPlaying()){
+                    currentiempo = mp.getCurrentPosition();
+                    if(currentiempo == tiempos[i]){
+                        mp.pause();
+                        i++;
+                    }
+                }
+
                 break;
 
             case R.id.btnnegro:
