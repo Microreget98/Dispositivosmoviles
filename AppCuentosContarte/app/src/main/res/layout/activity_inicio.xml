@@ -92,7 +92,7 @@
             android:paddingRight="40dp"
             android:text="Reproduce"
 
-            android:visibility="invisible" />
+            android:visibility="visible" />
 
 
         <ImageButton

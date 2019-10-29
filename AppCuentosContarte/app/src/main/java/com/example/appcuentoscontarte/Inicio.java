@@ -630,6 +630,11 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
             case R.id.btnreproducir:
                 String naudio= String.valueOf(current_audio);
                 Toast.makeText(getApplicationContext(), naudio, Toast.LENGTH_LONG).show();
+
+                Intent fin= new Intent(Inicio.this, InicioSesion.class);
+
+                Inicio.this.startActivity(fin);
+                Inicio.this.finish();
                 break;
 
             case R.id.btnsiguiente:
