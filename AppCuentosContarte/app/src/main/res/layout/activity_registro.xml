@@ -98,7 +98,7 @@
 
 
                     <Button
-                        android:id="@+id/btnregistrar"
+                        android:id="@+id/btnregistrar_registro"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight=".5"
@@ -111,7 +111,7 @@
                         android:layout_marginBottom="10dp"/>
 
                     <Button
-                        android:id="@+id/btningreso"
+                        android:id="@+id/btningreso_sesion"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight=".5"

@@ -83,7 +83,7 @@ tools:context=".InicioSesion">
 
 
                     <Button
-                        android:id="@+id/btnmenu"
+                        android:id="@+id/btnigresar_sesion"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight=".5"
@@ -96,7 +96,7 @@ tools:context=".InicioSesion">
                         android:layout_marginBottom="10dp"/>
 
                     <Button
-                        android:id="@+id/btnregistro"
+                        android:id="@+id/btnregistro_sesion"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight=".5"

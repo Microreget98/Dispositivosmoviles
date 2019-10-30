@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 public class InicioSesion extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnregistro;
+    Button btnregistro,btningresar;
 
 
     @Override
@@ -18,15 +18,19 @@ public class InicioSesion extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_sesion);
 
-        btnregistro = (Button) findViewById(R.id.btnregistro);
+        btnregistro = (Button) findViewById(R.id.btnregistro_sesion);
+        btningresar = (Button) findViewById(R.id.btningreso_sesion);
     }
 
     public void onClick(View v) {
 
         switch (v.getId()) {
 
-            case R.id.btnregistro:
+            case R.id.btnregistro_sesion:
                 Toast.makeText(getApplicationContext(), "Se presiono registro", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.btningreso_sesion:
+                Toast.makeText(getApplicationContext(), "Se presiono ingresar", Toast.LENGTH_LONG).show();
         }
     }
 }
