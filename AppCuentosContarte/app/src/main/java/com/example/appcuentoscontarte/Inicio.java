@@ -142,7 +142,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(getApplicationContext(), "La Caperucita Roja", Toast.LENGTH_LONG).show();
             sound = R.raw.caperucita;
             frases = getResources().getStringArray(R.array.cuento1);
-            tiempos = getResources().getIntArray(R.array.tiemposcaperucita);
+            tiempos = getResources().getIntArray(R.array.caperucita);
             mp = MediaPlayer.create(this, sound);
         }
 
