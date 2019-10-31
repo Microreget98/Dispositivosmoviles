@@ -5,9 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class Intermedio extends AppCompatActivity {
-    Button btncuento1, btncuento2;
+    ImageButton btncuento1, btncuento2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class Intermedio extends AppCompatActivity {
             public void onClick(View v) {
                 //Seleccion de cuento
                 Intent cuento = new Intent(Intermedio.this, Inicio.class);
-                cuento.putExtra("cuentoseleccionado","cochinitos");
+                cuento.putExtra("cuentoseleccionado","pollitocurioso");
                 Intermedio.this.startActivity(cuento);
                 Intermedio.this.finish();
             }

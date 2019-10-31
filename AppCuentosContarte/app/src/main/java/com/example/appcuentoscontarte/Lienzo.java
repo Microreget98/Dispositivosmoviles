@@ -8,18 +8,26 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import android.graphics.Path;
+import android.graphics.PorterDuff;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
+
 
 
 public class Lienzo extends View {
 
     private Path drawPath;
-    private Paint drawPaint, canvasPaint;
-    private int paintColor = 0xFFFF0000;
+    private static Paint drawPaint;
+    private Paint canvasPaint;
+    private static int paintColor = 0xFF353535;
+    //private int paintColor = 0xFFFF0000;
     private Canvas drawCanvas;
     private Bitmap canvasBitmap;
+
+   static float TamanoPunto;
+   private static boolean borrado = false;
 
     public Lienzo(Context context, AttributeSet attrs) {
 
@@ -35,7 +43,8 @@ public class Lienzo extends View {
         drawPaint = new Paint();
         drawPaint.setColor(paintColor);
         drawPaint.setAntiAlias(true);
-        drawPaint.setStrokeWidth(10);
+        //TamanoPunto= 20;
+        drawPaint.setStrokeWidth(20);
         drawPaint.setStyle(Paint.Style.STROKE);
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -81,6 +90,8 @@ public class Lienzo extends View {
         invalidate();
         paintColor = Color.parseColor(newColor);
         drawPaint.setColor(paintColor);
+
+
     }
 
     //Pinta la vista. Será llamado desde el OnTouchEvent
@@ -89,5 +100,30 @@ public class Lienzo extends View {
     protected void onDraw(Canvas canvas) {
         canvas.drawBitmap(canvasBitmap,0,0, canvasPaint);
         canvas.drawPath(drawPath,drawPaint);
+    }
+
+    public static void setTamanoPunto(float nuevoTamano){
+        //float pixel = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+          //  nuevoTamano,getResources().getDisplayMetrics());
+        //TamanoPunto =pixel;
+        drawPaint.setStrokeWidth(nuevoTamano);
+    }
+
+    public static void setBorrado(boolean estaborrado){
+        borrado = estaborrado;
+        if(borrado) {
+            drawPaint.setColor(Color.WHITE);
+        }
+        else{
+             drawPaint.setColor(paintColor);
+
+
+        }
+
+    }
+
+    public void NuevoDibujo(){
+        drawCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
+        invalidate();
     }
 }
