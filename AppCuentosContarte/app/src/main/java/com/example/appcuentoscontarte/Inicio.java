@@ -542,9 +542,9 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 salvarDibujo.show();
                 break;
 
-            case R.id.btncompr:
+            /*case R.id.btncompr:
                 Toast.makeText(getApplicationContext(), "Presiono comp", Toast.LENGTH_LONG).show();
-                break;
+                break;*/
 
             case R.id.btnborrador: /*Borrador*/
                 final Dialog borrarpunto =  new Dialog(this);
