@@ -14,23 +14,28 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class InicioSesion extends AppCompatActivity implements View.OnClickListener {
+public class InicioSesion extends AppCompatActivity  {
 
     Button btnregistro,btningresar;
     DatabaseReference databaseReference;
     EditText EdtUsuario;
-    String usuario,user,usingresado;
+    String user,usingresado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio_sesion);
 
-        btnregistro = (Button) findViewById(R.id.btnregistro_sesion);
-        btningresar = (Button) findViewById(R.id.btningreso_sesion);
-        EdtUsuario = (EditText)findViewById(R.id.etUsuario);
+        btnregistro = findViewById(R.id.btnregistro_sesion);
+        btningresar = findViewById(R.id.btnigresar_sesion);
+        EdtUsuario = findViewById(R.id.etUsuario);
+
+        //btningresar.setOnClickListener(this);
+        //btnregistro.setOnClickListener(this);
+
 
         //Hace referencia al nodo principal de BD
         /* databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -56,36 +61,43 @@ public class InicioSesion extends AppCompatActivity implements View.OnClickListe
             }
         }); */
 
-    }
 
-    public void onClick(View v) {
+        btnregistro.setOnClickListener(new View.OnClickListener() {
 
-        switch (v.getId()) {
+            @Override
+            public void onClick(View v) {
 
-            case R.id.btnregistro_sesion:
                 Toast.makeText(getApplicationContext(), "Se presiono registro", Toast.LENGTH_LONG).show();
                 Intent comenzar = new Intent(InicioSesion.this, Registro.class);
                 InicioSesion.this.startActivity(comenzar);
-                break;
-            case R.id.btningreso_sesion:
+                InicioSesion.this.finish();
+            }
 
+        });
+
+
+        btningresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                usingresado = EdtUsuario.getText().toString();
                 databaseReference = FirebaseDatabase.getInstance().getReference();
-
-
-                databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
+                Query query = databaseReference.child("Usuario").orderByChild("usuario").equalTo(usingresado);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        usingresado = EdtUsuario.getText().toString();
-                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                            if(snapshot.exists()){
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        if (dataSnapshot.exists()) {
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
                                 user = snapshot.getValue().toString();
-                                if(user==usingresado){
-                                    user = usuario;
-                                    Ingresar(user,usingresado);
-                                }
+                                Ingresar();
+
                                 //usuario = dataSnapshot.child("usuario").getValue().toString();
 
                             }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "El usuario no existe", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -96,7 +108,10 @@ public class InicioSesion extends AppCompatActivity implements View.OnClickListe
                     }
                 });
 
-                if(usuario==usingresado){
+
+            }
+        });
+                /*if(usuario==usingresado){
                     Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_LONG).show();
                     Intent iniciar = new Intent(InicioSesion.this, MainActivity.class);
                     InicioSesion.this.startActivity(iniciar);
@@ -104,15 +119,16 @@ public class InicioSesion extends AppCompatActivity implements View.OnClickListe
                 else{
                     EdtUsuario.setText("El usuario no existe");
                 }
-                //Toast.makeText(getApplicationContext(), "Se presiono ingresar", Toast.LENGTH_LONG).show();
-        }
-    }
+                Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_LONG).show();
+                Intent iniciar = new Intent(InicioSesion.this, MainActivity.class);
+                InicioSesion.this.startActivity(iniciar);*/
 
-    private void Ingresar(String user, String usingresado) {
+        //Toast.makeText(getApplicationContext(), "Se presiono ingresar", Toast.LENGTH_LONG).show();
+    }
+    private void Ingresar() {
         Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_LONG).show();
         Intent iniciar = new Intent(InicioSesion.this, MainActivity.class);
         InicioSesion.this.startActivity(iniciar);
+        InicioSesion.this.finish();
     }
-
-
 }

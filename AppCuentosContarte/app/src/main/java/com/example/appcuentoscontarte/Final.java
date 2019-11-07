@@ -25,6 +25,7 @@ public class Final extends AppCompatActivity {
             public void onClick(View v) {
                 Intent comenzar = new Intent(Final.this, MainActivity.class);
                 Final.this.startActivity(comenzar);
+                Final.this.finish();
                 //Toast.makeText(getApplicationContext(), "Se presiono", Toast.LENGTH_LONG).show();
                 //MainActivity.this.onBackPressed();
             }
