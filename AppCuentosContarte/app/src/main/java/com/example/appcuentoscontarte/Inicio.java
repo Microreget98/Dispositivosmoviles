@@ -448,11 +448,11 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                     //   startSave();
+                        //   startSave();
 
-                        View savingLayout =(View) findViewById(R.id.lienzo);
+                        View savingLayout = (View) findViewById(R.id.lienzo);
                         File file = saveBitMap(Inicio.this, savingLayout);
-                        if (file!= null) {
+                        if (file != null) {
                             Toast.makeText(getApplicationContext(), "¡Dibujo guardado en la galería!", Toast.LENGTH_LONG).show();
 
                             Log.i("TAG", "Drawing saved to the gallery!");
