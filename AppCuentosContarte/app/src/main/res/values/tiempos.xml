@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="caperucita">
+        <item>5042</item>
+        <item>14002</item>
+        <item>18547</item>
+        <item>28526</item>
+        <item>39602</item>
+        <item>49267</item>
+        <item>55536</item>
+        <item>63216</item>
+        <item>69747</item>
+        <item>76591</item>
+        <item>84584</item>
+        <item>92526</item>
+        <item>98482</item>
+        <item>104751</item>
+        <item>113006</item>
+        <item>120424</item>
+        <item>127216</item>
+        <item>133747</item>
+        <item>140904</item>
+        <item>151980</item>
+        <item>162482</item>
+        <item>169900</item>
+        <item>177267</item>
+        <item>183536</item>
+
+    </array>
+    <array name="pollitocurioso">
+        <item>0</item>
+        <item>17189</item>
+        <item>23693</item>
+        <item>34429</item>
+        <item>44669</item>
+        <item>52219</item>
+        <item>62459</item>
+        <item>72464</item>
+        <item>78132</item>
+        <item>83749</item>
+        <item>99109</item>
+        <item>106109</item>
+        <item>116898</item>
+        <item>123899</item>
+        <item>139572</item>
+        <item>151380</item>
+        <item>162429</item>
+        <item>175099</item>
+    </array>
+</resources>
