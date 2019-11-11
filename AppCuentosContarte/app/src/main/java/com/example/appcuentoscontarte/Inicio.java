@@ -608,7 +608,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 String naudio= String.valueOf(current_audio);
                 Toast.makeText(getApplicationContext(), naudio, Toast.LENGTH_LONG).show();
 
-                Intent fin= new Intent(Inicio.this, InicioSesion.class);
+                Intent fin= new Intent(Inicio.this, Final.class);
 
                 Inicio.this.startActivity(fin);
                 Inicio.this.finish();

@@ -10,6 +10,7 @@ import android.widget.Toast;
 public class Final extends AppCompatActivity {
 
     Button btnmenu,btnsalir,btncompartir;
+    int SELECT_FILE=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +47,18 @@ public class Final extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Se presiono COMPARTIR", Toast.LENGTH_LONG).show();
 
-                Intent compartir = new Intent(Intent.ACTION_SEND);
-                compartir.setType("imagen/jpeg");
-                String mensaje = "Gracias por usar CuentoContarte";
-                compartir.putExtra(Intent.EXTRA_SUBJECT,"Cuentos Contarte");
-                compartir.putExtra(Intent.EXTRA_TEXT,mensaje);
-                startActivity(Intent.createChooser(compartir,"Compartir vía"));
+                Intent comenzar = new Intent(Final.this, Compartir.class);
+                Final.this.startActivity(comenzar);
+                Final.this.finish();
+
 
             }
         });
+    }
+
+    public void abrirGaleria(View v){
+        Intent intent = new Intent();
+
     }
 }
 

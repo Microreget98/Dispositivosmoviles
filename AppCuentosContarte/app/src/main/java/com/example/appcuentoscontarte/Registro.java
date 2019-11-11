@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,13 +16,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.regex.Pattern;
 
 public class Registro extends AppCompatActivity {
 
     EditText usuario,correo;
     Button btnRegistro,btnInicioSesion;
-
+    boolean existe;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -43,39 +47,33 @@ public class Registro extends AppCompatActivity {
             public void onClick(View v) {
                 String user = usuario.getText().toString();
                 String mail = correo.getText().toString();
+                user.replaceAll("\\s","");
+                mail.replaceAll("\\s","");
                 if (user.equals("") || mail.equals("")){
                     validacion();
                 }
                 else{
 
-                   /* databaseReference = FirebaseDatabase.getInstance().getReference(); //Hace referencia al nodo principal de BD
+                   validarUsuario(user);
+                   if(!validarUsuario(user)){
+                       usuario.setError("El usuario ya existe");
+                   }
+                   else {
+                       validarEmail(mail);
+                   }
+                   if(!validarEmail(mail)){
+                       correo.setError("Correo no valido");
+                   }
+                   else {
 
-                    databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                       Usuario u = new Usuario();
+                       u.setUsuario(user);
+                       u.setCorreo(mail);
+                       databaseReference.child("Usuario").child(u.getUsuario()).setValue(u);
+                       Toast.makeText(Registro.this, "Se ha registrado", Toast.LENGTH_LONG).show();
 
-                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                                if(snapshot.exists()){
-                                    usuario = snapshot.getValue().toString();
-                                    //usuario = dataSnapshot.child("usuario").getValue().toString();
-                                    user = EdtUsuario.getText().toString();
-                                }
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });*/
-
-                    Usuario u = new Usuario();
-                    u.setUsuario(user);
-                    u.setCorreo(mail);
-                    databaseReference.child("Usuario").child(u.getUsuario()).setValue(u);
-                    Toast.makeText(Registro.this, "Se ha registrado", Toast.LENGTH_LONG).show();
-                    limpiarCampos();
+                       limpiarCampos();
+                   }
                 }
 
 
@@ -91,6 +89,39 @@ public class Registro extends AppCompatActivity {
         });
 
 
+    }
+
+    private boolean validarUsuario(String user) {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        Query query = databaseReference.child("Usuario").orderByChild("usuario").equalTo(user);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                        existe = true;
+
+                    }
+                } else {
+                    existe = false;
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return existe;
+    }
+
+    private boolean validarEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
     }
 
     private void inicializarFirebase() {
