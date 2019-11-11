@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="caperucita">
+    <array name="caperucitatiempos">
         <item>5042</item>
         <item>14002</item>
         <item>18547</item>
@@ -27,24 +27,21 @@
         <item>183536</item>
 
     </array>
-    <array name="pollitocurioso">
-        <item>0</item>
-        <item>17189</item>
-        <item>23693</item>
-        <item>34429</item>
-        <item>44669</item>
-        <item>52219</item>
-        <item>62459</item>
-        <item>72464</item>
-        <item>78132</item>
-        <item>83749</item>
-        <item>99109</item>
-        <item>106109</item>
-        <item>116898</item>
-        <item>123899</item>
-        <item>139572</item>
-        <item>151380</item>
-        <item>162429</item>
-        <item>175099</item>
+    <array name="pollitocuriosotiempos">
+        <item>13949</item>
+        <item>24686</item>
+        <item>34664</item>
+        <item>42214</item>
+        <item>52454</item>
+        <item>62145</item>
+        <item>68075</item>
+        <item>73770</item>
+        <item>89130</item>
+        <item>96104</item>
+        <item>107154</item>
+        <item>113659</item>
+        <item>129515</item>
+        <item>141140</item>
+        <item>152189</item>
     </array>
 </resources>

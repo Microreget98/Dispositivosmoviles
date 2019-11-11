@@ -10,9 +10,12 @@ import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.AsyncPlayer;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -32,9 +35,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+
+import org.w3c.dom.Text;
+import org.xml.sax.helpers.ParserAdapter;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -54,7 +63,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     private String[] frases;
     private int[] tiempos;
     private  String f, a;
-    int sound, i = 0, currentiempo = 0;
+    int sound, i = 0, currentiempo = 0, temp;
 
     int k;
     int current;
@@ -138,20 +147,50 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         recibirDato();
 
-        if (cs.equals("caperucita")) { // Comparación de Cadenas con .equals
-            Toast.makeText(getApplicationContext(), "La Caperucita Roja", Toast.LENGTH_LONG).show();
-            sound = R.raw.caperucita;
-            frases = getResources().getStringArray(R.array.cuento1);
-            tiempos = getResources().getIntArray(R.array.caperucita);
-            mp = MediaPlayer.create(this, sound);
-        }
+        sound = getResources().getIdentifier(cs, "raw", getPackageName());
+        mp = MediaPlayer.create(this, sound);
+        Toast.makeText(getApplicationContext(), sound, Toast.LENGTH_LONG).show();
+        temp = getResources().getIdentifier(cs + "frases", "array", getPackageName());
+        frases = getResources().getStringArray(temp);
+        temp = getResources().getIdentifier(cs + "tiempos", "array", getPackageName());
+        tiempos = getResources().getIntArray(temp);
 
         control=0;
         current_frase = 0;
-        current_audio = 0;
         f = frases[current_frase];
         tvCuento.setText(f);
+    }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(mp.isPlaying()){
+            mp.stop();
+        }
+    }
+
+    private class playmp extends AsyncTask<Void, Integer, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            if(i == 0){
+                mp.start();
+            }
+            else{
+                if(!mp.isPlaying() && i > 0){
+                    mp.seekTo(tiempos[i-1]);
+                    mp.start();
+                }
+            }
+            while (mp.isPlaying()){
+                currentiempo = mp.getCurrentPosition();
+                if(currentiempo == tiempos[i]){
+                    mp.pause();
+                    i++;
+                }
+            }
+            return null;
+        }
     }
 // BITMAP
 
@@ -230,9 +269,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     private void recibirDato(){
         Bundle extras = getIntent().getExtras();
         cs = extras.getString("cuentoseleccionado");
-
-
-        //Toast.makeText(getApplicationContext(), cs, Toast.LENGTH_LONG).show();
     }
 /*
     public static  Bitmap viewToBitmap(View view,int width, int height){
@@ -446,23 +482,16 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 break;
 
             case R.id.btnsiguiente:
-                if(i == 0){
-                    mp.start();
+                playmp nextau = new playmp();
+                nextau.execute();
+                if(current_frase == 0 && !mp.isPlaying()) {
+                    current_frase++;
                 }
                 else{
-                    if(!mp.isPlaying() && i > 0){
-                        mp.seekTo(tiempos[i-1]);
-                        mp.start();
-                    }
+                    f = frases[current_frase];
+                    tvCuento.setText(f);
+                    current_frase++;
                 }
-                while (mp.isPlaying()){
-                    currentiempo = mp.getCurrentPosition();
-                    if(currentiempo == tiempos[i]){
-                        mp.pause();
-                        i++;
-                    }
-                }
-
                 break;
 
             case R.id.btnnegro:
