@@ -1,0 +1,135 @@
+[33mcommit 26d47ae0dee6d0922d2742f33b6a72ed2ea79e25[m[33m ([m[1;36mHEAD -> [m[1;32mPortadasLibro[m[33m)[m
+Author: bcarranza03 <bryancarranza1@gmail.com>
+Date:   Sun Sep 22 17:40:42 2019 -0500
+
+    Los libros ya tienen portadas
+
+[33mcommit 7366b5e46683ae0c7dbdce09f9e1cb34637bfd48[m[33m ([m[1;31morigin/CicloStrings[m[33m, [m[1;32mmaster[m[33m, [m[1;32mPortadasLibros[m[33m, [m[1;32mCicloStrings[m[33m)[m
+Author: AleScods <alejandramonze@hotmail.com>
+Date:   Wed Sep 18 21:37:04 2019 -0500
+
+    Colores funcionando y texto
+
+[33mcommit d997e85db9e312f6b80e204e75a156789d0e193f[m
+Author: AleScods <alejandramonze@hotmail.com>
+Date:   Sat Sep 14 23:30:15 2019 -0500
+
+    haciendo cambio
+
+[33mcommit 092d67eafaecf99bb0afa213dd9b75016581ffec[m[33m ([m[1;31morigin/dev[m[33m)[m
+Author: Angel Quiñones <angelservando@hotmial.com>
+Date:   Thu Sep 12 19:31:36 2019 -0500
+
+    Eliminacion del contetn_inicio2.xml por error en el ultimo merge
+
+[33mcommit cf104f8f7b0400501d20734280780d210746c9cd[m
+Author: Angel Quñones <angelservando@hotmail.com>
+Date:   Thu Sep 12 12:34:53 2019 -0500
+
+    Merge completo con la rama nuevapantalla e InicioLapiz
+
+[33mcommit 2e45f67bde5a0291edcabb2210d324856b77f76a[m
+Merge: 6e2cb5e d75d43c
+Author: Angel Quñones <angelservando@hotmail.com>
+Date:   Thu Sep 12 12:25:33 2019 -0500
+
+    Merged InicioLapiz into dev
+
+[33mcommit 6e2cb5e47f7adc12a26f204270fbfbb96dd95892[m
+Merge: 4e5dbf3 e4e6cff
+Author: Angel Quñones <angelservando@hotmail.com>
+Date:   Thu Sep 12 12:11:53 2019 -0500
+
+    Merge branch 'nuevapantalla' into dev
+
+[33mcommit d75d43c56ac5f3cde84e66e07e784e15c6825a23[m
+Author: Angel Quñones <angelservando@hotmail.com>
+Date:   Thu Sep 12 12:07:34 2019 -0500
+
+    Agregado de project.xml
+
+[33mcommit 4e5dbf3275ae2d73225b562bf8355ee9b3043214[m
+Author: Angel Quñones <angelservando@hotmail.com>
+Date:   Thu Sep 12 12:03:01 2019 -0500
+
+    Arreglo de project.xml
+
+[33mcommit 9182d776fc88eed365656ad91af78a8b41d27c50[m
+Author: Angel Quñones <angelservando@hotmail.com>
+Date:   Thu Sep 12 11:42:52 2019 -0500
+
+    Confilcto eliminado
+
+[33mcommit 6ddd59ef3e715e3a670b4a5dc549867d089b09a8[m[33m ([m[1;31morigin/InicioLapiz[m[33m)[m
+Author: AleScods <alejandramonze@hotmail.com>
+Date:   Wed Sep 11 16:47:54 2019 -0500
+
+    Gama de colores lineal
+
+[33mcommit e4e6cfff8b323be6fc79408af6a1f06b9310a7b5[m[33m ([m[1;31morigin/nuevapantalla[m[33m)[m
+Author: Angel Quiñones <angelservando@hotmial.com>
+Date:   Wed Sep 11 16:35:25 2019 -0500
+
+    funcion de mostrado entre Intermedio e Inicio
+
+[33mcommit f92025ffa82e50864404ba78319805b1747f0a72[m
+Author: Angel Quñones <angelservando@hotmail.com>
+Date:   Wed Sep 11 15:02:16 2019 -0500
+
+    intento de paso de ventana de intermedio a lienzo
+
+[33mcommit 2c50858692ce6059ff49247bb4217ac452f58ff1[m
+Author: Angel Quiñones <angelservando@hotmial.com>
+Date:   Wed Sep 11 11:49:08 2019 -0500
+
+    Eliminacion de las pruebas
+
+[33mcommit afab202c63f73bb3732459f9e253d17feec9db9b[m
+Author: Angel Quiñones <angelservando@hotmial.com>
+Date:   Tue Sep 10 17:22:11 2019 -0500
+
+    prueba de eliminacion de archivo del working tree
+
+[33mcommit 34ee718f7f599466c561aed8600a93fe8c1f4adc[m
+Author: Angel Quiñones <angelservando@hotmial.com>
+Date:   Tue Sep 10 17:15:12 2019 -0500
+
+    Pantalla intermedia armada, falta hacer constructor de la pantalla
+
+[33mcommit 3253162fc7ccdcb63af93e1a7d1929c961d38761[m
+Author: Angel Quñones <angelservando@hotmail.com>
+Date:   Sun Sep 8 22:27:14 2019 -0500
+
+    avance a pantalla inter comenzar y linezo
+
+[33mcommit 7bf6154873564bb2cc035f57d95e481e4cec2f94[m
+Author: AleScods <alejandramonze@hotmail.com>
+Date:   Sat Sep 7 17:37:55 2019 -0500
+
+    Inicio lapices y boton atras funcionando
+
+[33mcommit 80be7b0a3d391b43e6d30b2c761ada461943dd83[m
+Author: AleScods <alejandramonze@hotmail.com>
+Date:   Fri Sep 6 16:34:29 2019 -0500
+
+    Funciona lienzo solo rojo
+
+[33mcommit c7be5bfd568eec85282db8e009105c001c072379[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Alejandra <alejandramonze@hotmail.com>
+Date:   Wed Sep 4 17:56:37 2019 -0500
+
+    Agregado Menu
+    
+    a ver si ya
+
+[33mcommit 8d1898546d50b4b24c447ca885cc41878414d135[m
+Author: Angel Quñones <angelservando@hotmail.com>
+Date:   Mon Sep 2 23:21:48 2019 -0500
+
+    Agregado del proyecto
+
+[33mcommit 09d85852a2e6ceda41bed7fa870a71f6c4b458af[m
+Author: Angel Quñones <angelservando@hotmail.com>
+Date:   Sat Aug 17 12:04:30 2019 -0500
+
+    Primer commit con prueba de agregado de un archivo
