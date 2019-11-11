@@ -13,9 +13,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.media.AsyncPlayer;
 import android.media.Image;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -143,23 +145,53 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         sound = getResources().getIdentifier(cs, "raw", getPackageName());
         mp = MediaPlayer.create(this, sound);
         Toast.makeText(getApplicationContext(), sound, Toast.LENGTH_LONG).show();
-//        temp = getResources().getIdentifier(cs + "frases", "array", getPackageName());
-//        frases = getResources().getStringArray(temp);
-        tiempos = getResources().getIntArray(getResources().getIdentifier(cs + "tiempos", "array", getPackageName()));
+        temp = getResources().getIdentifier(cs + "frases", "array", getPackageName());
+        frases = getResources().getStringArray(temp);
+        temp = getResources().getIdentifier(cs + "tiempos", "array", getPackageName());
+        tiempos = getResources().getIntArray(temp);
 
-//        control=0;
-//        current_frase = 0;
-//        current_audio = 0;
-//        f = frases[current_frase];
-//        tvCuento.setText(f);
+        control=0;
+        current_frase = 0;
+        f = frases[current_frase];
+        tvCuento.setText(f);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(mp.isPlaying()){
+            mp.stop();
+        }
+    }
+
+    private class playmp extends AsyncTask<Void, Integer, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            if(i == 0){
+                mp.start();
+            }
+            else{
+                if(!mp.isPlaying() && i > 0){
+                    mp.seekTo(tiempos[i-1]);
+                    mp.start();
+                }
+            }
+            while (mp.isPlaying()){
+                currentiempo = mp.getCurrentPosition();
+                if(currentiempo == tiempos[i]){
+                    mp.pause();
+                    i++;
+                }
+            }
+            return null;
+        }
     }
 
 
     private void recibirDato(){
         Bundle extras = getIntent().getExtras();
-
         cs = extras.getString("cuentoseleccionado");
-        //Toast.makeText(getApplicationContext(), cs, Toast.LENGTH_LONG).show();
     }
 
     public static  Bitmap viewToBitmap(View view,int width, int height){
@@ -368,23 +400,16 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 break;
 
             case R.id.btnsiguiente:
-                if(i == 0){
-                    mp.start();
+                playmp nextau = new playmp();
+                nextau.execute();
+                if(current_frase == 0 && !mp.isPlaying()) {
+                    current_frase++;
                 }
                 else{
-                    if(!mp.isPlaying() && i > 0){
-                        mp.seekTo(tiempos[i-1]);
-                        mp.start();
-                    }
+                    f = frases[current_frase];
+                    tvCuento.setText(f);
+                    current_frase++;
                 }
-                while (mp.isPlaying()){
-                    currentiempo = mp.getCurrentPosition();
-                    if(currentiempo == tiempos[i]){
-                        mp.pause();
-                        i++;
-                    }
-                }
-
                 break;
 
             case R.id.btnnegro:
