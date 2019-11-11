@@ -81,6 +81,8 @@ public class InicioSesion extends AppCompatActivity  {
             public void onClick(View v) {
 
                 usingresado = EdtUsuario.getText().toString();
+                usingresado.replaceAll("\\s","");
+
                 databaseReference = FirebaseDatabase.getInstance().getReference();
                 Query query = databaseReference.child("Usuario").orderByChild("usuario").equalTo(usingresado);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
