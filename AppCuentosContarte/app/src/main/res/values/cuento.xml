@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <array name="cuento1">
+    <array name="caperucitafrases">
         <item>En una época de fantasía, vivía una niña muy linda y buena llamada Caperucita Roja </item>
         <item>Vivía con su madre. Un día le dijo ella a la niña: </item>
         <item>"Caperucita lleva esta canastita con frutas y tortas a tu abuelita que vive muy lejos dentro del bosque"</item>
@@ -27,7 +27,7 @@
         <item>Le promete a su Abuelita nunca dejarla solita y siempre cuidarla.</item>
     </array>
 
-    <array name="cuento2">
+    <array name="pollitocuriosofrases">
         <item>Había una vez un pollito llamado Paquito que vivía en un gallinero con su mamá y sus hermanos. </item>
         <item>En el gallinero todos la pasaban muy bien, corrían, jugaban y se divertían, se sentían muy seguros y tranquilos pues entre todos se conocían.</item>
         <item>Un día Paquito pensativo, se quedó mirando desde el corral el mundo exterior.</item>

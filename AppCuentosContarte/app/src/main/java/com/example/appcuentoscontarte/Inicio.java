@@ -43,12 +43,14 @@ import android.widget.Toast;
 
 
 import org.w3c.dom.Text;
+import org.xml.sax.helpers.ParserAdapter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -70,7 +72,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     private String[] frases;
     private int[] tiempos;
     private  String f, a;
-    int sound, i = 0, currentiempo = 0;
+    int sound, i = 0, currentiempo = 0, temp;
 
     int k;
     int current;
@@ -138,28 +140,25 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         recibirDato();
 
-        if (cs.equals("caperucita")) { // Comparación de Cadenas con .equals
-            Toast.makeText(getApplicationContext(), "La Caperucita Roja", Toast.LENGTH_LONG).show();
-            sound = R.raw.caperucita;
-            frases = getResources().getStringArray(R.array.cuento1);
-            tiempos = getResources().getIntArray(R.array.caperucita);
-            mp = MediaPlayer.create(this, sound);
-        }
+        sound = getResources().getIdentifier(cs, "raw", getPackageName());
+        mp = MediaPlayer.create(this, sound);
+        Toast.makeText(getApplicationContext(), sound, Toast.LENGTH_LONG).show();
+//        temp = getResources().getIdentifier(cs + "frases", "array", getPackageName());
+//        frases = getResources().getStringArray(temp);
+        tiempos = getResources().getIntArray(getResources().getIdentifier(cs + "tiempos", "array", getPackageName()));
 
-        control=0;
-        current_frase = 0;
-        current_audio = 0;
-        f = frases[current_frase];
-        tvCuento.setText(f);
-
+//        control=0;
+//        current_frase = 0;
+//        current_audio = 0;
+//        f = frases[current_frase];
+//        tvCuento.setText(f);
     }
 
 
     private void recibirDato(){
         Bundle extras = getIntent().getExtras();
+
         cs = extras.getString("cuentoseleccionado");
-
-
         //Toast.makeText(getApplicationContext(), cs, Toast.LENGTH_LONG).show();
     }
 
