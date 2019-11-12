@@ -62,13 +62,6 @@
             android:text="COMP"
             android:visibility="invisible" />
 
-        <Button
-            android:layout_width="5dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnscreenshot"
-            android:layout_weight=".8"
-            android:text="ss"/>
-
         <ImageButton
             android:contentDescription="@string/erase"
             android:id="@+id/btnborrador"
