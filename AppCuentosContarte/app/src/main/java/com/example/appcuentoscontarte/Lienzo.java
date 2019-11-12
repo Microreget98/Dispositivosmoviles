@@ -120,8 +120,6 @@ public class Lienzo extends View {
         }
         else{
              drawPaint.setColor(paintColor);
-
-
         }
 
     }

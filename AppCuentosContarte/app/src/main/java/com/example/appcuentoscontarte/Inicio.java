@@ -6,44 +6,28 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.media.AsyncPlayer;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.os.Handler;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-
-import org.w3c.dom.Text;
-import org.xml.sax.helpers.ParserAdapter;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -53,7 +37,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     MediaPlayer mp;
     ImageButton btnreproducir, btnsiguiente,btnborrador, btntrazo, btnhojanueva, btnguardar;
     TextView tvCuento;
-    private int current_frase, current_audio, control;
+    private int current_frase, control = 0;
 
     float ppequeno;
     float pmediano;
@@ -65,15 +49,10 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     private  String f, a;
     int sound, i = 0, currentiempo = 0, temp;
 
-    int k;
-    int current;
-
-
     LinearLayout paintLayout1;
     LinearLayout paintLayout2;
 
     String cs;
-    private String comp;
 
     Lienzo lienzo;
 
@@ -91,10 +70,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         currPaint = (ImageButton)paintLayout2.getChildAt(5);
         currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
-
-
-
-
 
         btnreproducir = (ImageButton) findViewById(R.id.btnreproducir);
         btnsiguiente = (ImageButton) findViewById(R.id.btnsiguiente);
@@ -175,11 +150,13 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         protected Void doInBackground(Void... voids) {
             if(i == 0){
                 mp.start();
+                control++;
             }
             else{
-                if(!mp.isPlaying() && i > 0){
+                if((!mp.isPlaying() && i > 0) && control != tiempos.length){
                     mp.seekTo(tiempos[i-1]);
                     mp.start();
+                    control++;
                 }
             }
             while (mp.isPlaying()){
@@ -472,26 +449,23 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 tamanopunto.show();
                 break;
             case R.id.btnreproducir:
-                String naudio = String.valueOf(current_audio);
-                Toast.makeText(getApplicationContext(), naudio, Toast.LENGTH_LONG).show();
-
-                Intent fin= new Intent(Inicio.this, Final.class);
-
-                Inicio.this.startActivity(fin);
-                Inicio.this.finish();
+//                String naudio = String.valueOf(current_audio);
+//                Toast.makeText(getApplicationContext(), naudio, Toast.LENGTH_LONG).show();
+//
+//                Intent fin= new Intent(Inicio.this, Final.class);
+//
+//                Inicio.this.startActivity(fin);
+//                Inicio.this.finish();
                 break;
 
             case R.id.btnsiguiente:
                 playmp nextau = new playmp();
                 nextau.execute();
-                if(current_frase == 0 && !mp.isPlaying()) {
+                if(current_frase == 0 || !mp.isPlaying()) {
                     current_frase++;
                 }
-                else{
-                    f = frases[current_frase];
-                    tvCuento.setText(f);
-                    current_frase++;
-                }
+                f = frases[current_frase];
+                tvCuento.setText(f);
                 break;
 
             case R.id.btnnegro:
