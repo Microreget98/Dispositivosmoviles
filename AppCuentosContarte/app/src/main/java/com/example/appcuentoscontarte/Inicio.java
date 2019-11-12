@@ -469,11 +469,17 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
             case R.id.btnsiguiente:
                 playmp nextau = new playmp();
                 nextau.execute();
-                if(current_frase == 0 || !mp.isPlaying()) {
-                    current_frase++;
-                }
                 f = frases[current_frase];
                 tvCuento.setText(f);
+                if(current_frase == 0) {
+                    current_frase = 0;
+                    current_frase++;
+                }
+                else{
+                    if(!mp.isPlaying()){
+                        current_frase++;
+                    }
+                }
                 break;
 
             case R.id.btnnegro:
