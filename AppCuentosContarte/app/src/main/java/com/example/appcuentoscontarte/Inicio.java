@@ -45,7 +45,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     MediaPlayer mp;
     ImageButton btnreproducir, btnsiguiente,btnborrador, btntrazo, btnhojanueva, btnguardar;
     TextView tvCuento;
-    private int current_frase, control = 0;
+    private int current_frase;
 
     float ppequeno;
     float pmediano;
@@ -55,7 +55,8 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     private String[] frases;
     private int[] tiempos;
     private  String f, a;
-    int sound, i = 0, currentiempo = 0, temp;
+    int sound, i = 0, currentiempo = 0, temp, control = 0;
+    boolean sw = true;
 
     LinearLayout paintLayout1;
     LinearLayout paintLayout2;
@@ -161,7 +162,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 control++;
             }
             else{
-                if((!mp.isPlaying() && i > 0) && control != tiempos.length){
+                if(!mp.isPlaying() && sw == true){
                     mp.seekTo(tiempos[i-1]);
                     mp.start();
                     control++;
@@ -170,8 +171,14 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
             while (mp.isPlaying()){
                 currentiempo = mp.getCurrentPosition();
                 if(currentiempo == tiempos[i]){
-                    mp.pause();
-                    i++;
+                    if(control == tiempos.length){
+                        sw = false;
+                        break;
+                    }
+                    else{
+                        mp.pause();
+                        i++;
+                    }
                 }
             }
             return null;
@@ -469,17 +476,17 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
             case R.id.btnsiguiente:
                 playmp nextau = new playmp();
                 nextau.execute();
-                f = frases[current_frase];
-                tvCuento.setText(f);
-                if(current_frase == 0) {
-                    current_frase = 0;
-                    current_frase++;
-                }
-                else{
-                    if(!mp.isPlaying()){
-                        current_frase++;
-                    }
-                }
+//                f = frases[current_frase];
+//                tvCuento.setText(f);
+//                if(current_frase == 0) {
+//                    current_frase = 0;
+//                    current_frase++;
+//                }
+//                else{
+//                    if(!mp.isPlaying()){
+//                        current_frase++;
+//                    }
+//                }
                 break;
 
             case R.id.btnnegro:

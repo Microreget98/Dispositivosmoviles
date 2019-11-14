@@ -53,26 +53,25 @@ public class Registro extends AppCompatActivity {
                     validacion();
                 }
                 else{
-
-                   validarUsuario(user);
+//                   validarUsuario(user);
                    if(!validarUsuario(user)){
                        usuario.setError("El usuario ya existe");
                    }
                    else {
-                       validarEmail(mail);
-                   }
-                   if(!validarEmail(mail)){
-                       correo.setError("Correo no valido");
-                   }
-                   else {
+//                       validarEmail(mail);
+                       if(!validarEmail(mail)){
+                           correo.setError("Correo no valido");
+                       }
+                       else {
 
-                       Usuario u = new Usuario();
-                       u.setUsuario(user);
-                       u.setCorreo(mail);
-                       databaseReference.child("Usuario").child(u.getUsuario()).setValue(u);
-                       Toast.makeText(Registro.this, "Se ha registrado", Toast.LENGTH_LONG).show();
+                           Usuario u = new Usuario();
+                           u.setUsuario(user);
+                           u.setCorreo(mail);
+                           databaseReference.child("Usuario").child(u.getUsuario()).setValue(u);
+                           Toast.makeText(Registro.this, "Se ha registrado", Toast.LENGTH_LONG).show();
 
-                       limpiarCampos();
+                           limpiarCampos();
+                       }
                    }
                 }
 

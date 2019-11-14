@@ -23,6 +23,7 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             android:layout_weight=".5">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -41,8 +42,7 @@
             android:orientation="horizontal"
             android:layout_weight="1"
             android:layout_marginHorizontal="20dp"
-           android:layout_marginBottom="10dp"
-            >
+            android:layout_marginBottom="10dp">
 
             <ImageButton
                 android:id="@+id/btncuento1"
@@ -51,8 +51,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/libro1"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginVertical="20dp"
-                />
+                android:layout_marginVertical="20dp" />
 
             <ImageButton
                 android:id="@+id/btncuento2"
@@ -61,7 +60,7 @@
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/libro2" />
+                android:background="@drawable/libro2"/>
 
         </LinearLayout>
 
@@ -71,34 +70,27 @@
             android:orientation="horizontal"
             android:layout_weight="1"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginBottom="20dp"
-            >
+            android:layout_marginBottom="20dp">
 
             <ImageButton
                 android:id="@+id/btncuento3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="30dp"
-
                 android:layout_marginVertical="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/libro1"
-
                 android:visibility="invisible" />
-
 
             <ImageButton
                 android:id="@+id/btncuento4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="30dp"
-
                 android:layout_marginVertical="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/libro1"
                 android:visibility="invisible" />
-
-
 
         </LinearLayout>
 
@@ -108,37 +100,28 @@
                 android:orientation="horizontal"
                 android:layout_weight="1"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="20dp"
-                >
+                android:layout_marginBottom="20dp">
 
                 <ImageButton
                     android:id="@+id/btncuento5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="30dp"
-
                     android:layout_marginVertical="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/libro1"
                     android:visibility="invisible" />
-
 
                 <ImageButton
                     android:id="@+id/btncuento6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="30dp"
-
                     android:layout_marginVertical="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/libro1"
-                    android:visibility="invisible" />
-
-
-
+                    android:visibility="invisible"/>
             </LinearLayout>
-
-
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
