@@ -21,6 +21,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class Compartir extends AppCompatActivity {
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //codigo adicional
+        //this.finish();
+        Intent atras = new Intent(Compartir.this, Inicio.class);
+        Compartir.this.startActivity(atras);
+       Compartir.this.finish();
+    }
 
     ImageView imagen;
     Button seleccionarImagen, compartir;

@@ -67,7 +67,7 @@ public class InicioSesion extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(), "Se presiono registro", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Se presiono registro", Toast.LENGTH_LONG).show();
                 Intent comenzar = new Intent(InicioSesion.this, Registro.class);
                 InicioSesion.this.startActivity(comenzar);
                 InicioSesion.this.finish();
@@ -81,32 +81,44 @@ public class InicioSesion extends AppCompatActivity  {
             public void onClick(View v) {
 
                 usingresado = EdtUsuario.getText().toString();
-                databaseReference = FirebaseDatabase.getInstance().getReference();
-                Query query = databaseReference.child("Usuario").orderByChild("usuario").equalTo(usingresado);
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                if(usingresado.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "El campo usuario está vacío", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    databaseReference = FirebaseDatabase.getInstance().getReference();
+                    Query query = databaseReference.child("Usuario").orderByChild("usuario").equalTo(usingresado);
 
-                        if (dataSnapshot.exists()) {
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
 
-                                user = snapshot.getValue().toString();
-                                Ingresar();
 
-                                //usuario = dataSnapshot.child("usuario").getValue().toString();
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
+
+                            if (dataSnapshot.exists()) {
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                                    user = snapshot.getValue().toString();
+                                    Ingresar();
+
+                                    //usuario = dataSnapshot.child("usuario").getValue().toString();
+
+                                }
+                            } else {
+                                Toast.makeText(getApplicationContext(), "El usuario no existe", Toast.LENGTH_LONG).show();
                             }
-                        } else {
-                            Toast.makeText(getApplicationContext(), "El usuario no existe", Toast.LENGTH_LONG).show();
+
                         }
 
-                    }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
+                    });
 
-                    }
-                });
+                }
+
 
 
             }
@@ -126,7 +138,7 @@ public class InicioSesion extends AppCompatActivity  {
         //Toast.makeText(getApplicationContext(), "Se presiono ingresar", Toast.LENGTH_LONG).show();
     }
     private void Ingresar() {
-        Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Bienvenid@", Toast.LENGTH_LONG).show();
         Intent iniciar = new Intent(InicioSesion.this, MainActivity.class);
         InicioSesion.this.startActivity(iniciar);
         InicioSesion.this.finish();

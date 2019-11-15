@@ -22,6 +22,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.regex.Pattern;
 
 public class Registro extends AppCompatActivity {
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //codigo adicional
+        //this.finish();
+        Intent atras = new Intent(Registro.this, InicioSesion.class);
+       Registro.this.startActivity(atras);
+        Registro.this.finish();
+    }
 
     EditText usuario,correo;
     Button btnRegistro,btnInicioSesion;
@@ -85,6 +94,8 @@ public class Registro extends AppCompatActivity {
             public void onClick(View v){
                 Intent comenzar = new Intent(Registro.this, InicioSesion.class);
                 Registro.this.startActivity(comenzar);
+                Registro.this.finish();
+
             }
         });
 

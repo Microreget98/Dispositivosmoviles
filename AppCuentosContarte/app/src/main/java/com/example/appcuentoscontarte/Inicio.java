@@ -9,45 +9,26 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.media.AsyncPlayer;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
-import android.os.Handler;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
@@ -93,9 +74,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         currPaint = (ImageButton)paintLayout2.getChildAt(5);
         currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
-
-
-
 
 
         btnreproducir = (ImageButton) findViewById(R.id.btnreproducir);
@@ -151,7 +129,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         sound = getResources().getIdentifier(cs, "raw", getPackageName());
         mp = MediaPlayer.create(this, sound);
-        Toast.makeText(getApplicationContext(), sound, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), sound, Toast.LENGTH_LONG).show();
         temp = getResources().getIdentifier(cs + "frases", "array", getPackageName());
         frases = getResources().getStringArray(temp);
         temp = getResources().getIdentifier(cs + "tiempos", "array", getPackageName());
@@ -169,6 +147,11 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         if(mp.isPlaying()){
             mp.stop();
         }
+        Intent atras = new Intent(Inicio.this, Intermedio.class);
+        Inicio.this.startActivity(atras);
+        Inicio.this.finish();
+
+
     }
 
     private class playmp extends AsyncTask<Void, Integer, Void> {

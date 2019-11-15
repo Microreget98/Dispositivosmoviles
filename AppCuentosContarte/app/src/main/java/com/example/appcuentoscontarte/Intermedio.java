@@ -7,6 +7,16 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class Intermedio extends AppCompatActivity {
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //codigo adicional
+        //this.finish();
+        Intent atras = new Intent(Intermedio.this, MainActivity.class);
+        Intermedio.this.startActivity(atras);
+        Intermedio.this.finish();
+    }
+
     ImageButton btncuento1, btncuento2;
 
     @Override
