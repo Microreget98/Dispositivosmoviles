@@ -4,24 +4,15 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.media.AsyncPlayer;
-import android.media.Image;
 import android.media.MediaPlayer;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.os.Handler;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,14 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -189,6 +173,8 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                     }
                 }
             }
+            current_frase++;
+            f = frases[current_frase];
             return null;
         }
     }
@@ -483,18 +469,10 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
             case R.id.btnsiguiente:
                 playmp nextau = new playmp();
+                btnsiguiente.setEnabled(false);
                 nextau.execute();
-//                f = frases[current_frase];
-//                tvCuento.setText(f);
-//                if(current_frase == 0) {
-//                    current_frase = 0;
-//                    current_frase++;
-//                }
-//                else{
-//                    if(!mp.isPlaying()){
-//                        current_frase++;
-//                    }
-//                }
+                btnsiguiente.setEnabled(true);
+                tvCuento.setText(f);
                 break;
 
             case R.id.btnnegro:
