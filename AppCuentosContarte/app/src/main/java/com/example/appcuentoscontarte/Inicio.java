@@ -147,6 +147,8 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         if(mp.isPlaying()){
             mp.stop();
         }
+        AsyncTask exit = new playmp();
+        exit.cancel(true);
     }
 
     private class playmp extends AsyncTask<Void, Integer, AsyncTask.Status> {
