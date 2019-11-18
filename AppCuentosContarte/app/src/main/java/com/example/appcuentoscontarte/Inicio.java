@@ -156,7 +156,20 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
     private class playmp extends AsyncTask<Void, Integer, Void> {
 
         @Override
+        protected void onPreExecute() {
+            if (btnsiguiente.isEnabled()){
+                btnsiguiente.setEnabled(false);
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+
+        @Override
         protected Void doInBackground(Void... voids) {
+//            btnsiguiente.setEnabled(false);
             if(i == 0){
                 mp.start();
                 control++;
@@ -178,6 +191,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                     else{
                         mp.pause();
                         i++;
+//                        Toast.makeText(getApplicationContext(), "acabo", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -475,6 +489,12 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
             case R.id.btnsiguiente:
                 playmp nextau = new playmp();
+<<<<<<< Updated upstream
+=======
+                if(btnsiguiente.isEnabled()){
+                    nextau.onPreExecute();
+                }
+>>>>>>> Stashed changes
                 nextau.execute();
 //                f = frases[current_frase];
 //                tvCuento.setText(f);
