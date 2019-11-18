@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -21,14 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -143,6 +135,10 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         current_frase = 0;
         f = frases[current_frase];
         tvCuento.setText(f);
+
+        AsyncTask fin;
+        playmp iniAu = new playmp();
+        fin = iniAu.execute();
     }
 
     @Override
@@ -153,23 +149,23 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         }
     }
 
-    private class playmp extends AsyncTask<Void, Integer, Void> {
+    private class playmp extends AsyncTask<Void, Integer, AsyncTask.Status> {
 
         @Override
         protected void onPreExecute() {
-            if (btnsiguiente.isEnabled()){
-                btnsiguiente.setEnabled(false);
+            btnsiguiente.setEnabled(false);
+        }
+
+        @Override
+        protected void onPostExecute(Status avoid) {
+            super.onPostExecute(avoid);
+            if (avoid == Status.FINISHED){
+                btnsiguiente.setEnabled(true);
             }
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-//            btnsiguiente.setEnabled(false);
+        protected Status doInBackground(Void... voids) {
             if(i == 0){
                 mp.start();
                 control++;
@@ -191,16 +187,15 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                     else{
                         mp.pause();
                         i++;
-//                        Toast.makeText(getApplicationContext(), "acabo", Toast.LENGTH_LONG).show();
+
                     }
                 }
             }
-            return null;
+            return Status.FINISHED;
         }
     }
+
 // BITMAP
-
-
     private Bitmap getBitmapFromView(View view) {
         //Define a bitmap with the same size as the view
         Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
@@ -276,58 +271,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         Bundle extras = getIntent().getExtras();
         cs = extras.getString("cuentoseleccionado");
     }
-/*
-    public static  Bitmap viewToBitmap(View view,int width, int height){
-        Bitmap bitmap = Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        return bitmap;
-    }
-
-    public void startSave(){
-        FileOutputStream fileOutputStream=null;
-        File file=getDisc();
-        if(!file.exists() && !file.mkdir()){
-            Toast.makeText(getApplicationContext(),"No se puede guardar este directorio",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyymmsshhmmss");
-        String date= simpleDateFormat.format(new Date());
-        String name ="Img"+date+".jpg";
-        String file_name=file.getAbsolutePath()+"/"+name;
-        File new_file=new File(file_name);
-        try{
-            fileOutputStream=new FileOutputStream(new_file);
-            Bitmap bitmap = viewToBitmap(lienzo,lienzo.getWidth(),lienzo.getHeight());
-            bitmap.compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream);
-            Toast.makeText(getApplicationContext(),"Save image sucess",Toast.LENGTH_SHORT).show();
-
-            fileOutputStream.flush();
-            fileOutputStream.close();
-
-
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        refreshGallery(new_file);
-
-    }
-
-    public  void  refreshGallery(File file){
-        Intent intent=new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        intent.setData(Uri.fromFile(file));
-        sendBroadcast(intent);
-    }
-    private File getDisc(){
-        File file = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-
-        return  new File(file,"Image Demogg");
-
-    }
-
- */
 
     @Override
     public void onClick(View v) {
@@ -489,25 +432,16 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
             case R.id.btnsiguiente:
                 playmp nextau = new playmp();
-<<<<<<< Updated upstream
-=======
+                AsyncTask fin;
+                nextau.onPreExecute();
                 if(btnsiguiente.isEnabled()){
-                    nextau.onPreExecute();
+                    break;
                 }
->>>>>>> Stashed changes
-                nextau.execute();
-//                f = frases[current_frase];
-//                tvCuento.setText(f);
-//                if(current_frase == 0) {
-//                    current_frase = 0;
-//                    current_frase++;
-//                }
-//                else{
-//                    if(!mp.isPlaying()){
-//                        current_frase++;
-//                    }
-//                }
-                break;
+                else{
+                    fin = nextau.execute();
+                    nextau.onPostExecute(fin.getStatus());
+                    break;
+                }
 
             case R.id.btnnegro:
                 color = v.getTag().toString();
