@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class Registro extends AppCompatActivity {
@@ -67,9 +68,10 @@ public class Registro extends AppCompatActivity {
                    else {
 
                        Usuario u = new Usuario();
+                       u.setUid(UUID.randomUUID().toString()); //Agregamos el set de ID
                        u.setUsuario(user);
                        u.setCorreo(mail);
-                       databaseReference.child("Usuario").child(u.getUsuario()).setValue(u);
+                       databaseReference.child("Usuario").child(u.getUid()).setValue(u); // Se coloco el ID como hijo principal el lugar del usuario
                        Toast.makeText(Registro.this, "Se ha registrado", Toast.LENGTH_LONG).show();
 
                        limpiarCampos();
