@@ -1,5 +1,6 @@
 package com.example.appcuentoscontarte;
 
+import android.Manifest;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +15,11 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         //codigo adicional
-        this.finish();
+        //this.finish();
+        Toast.makeText(getApplicationContext(), "Sesión cerrada", Toast.LENGTH_LONG).show();
+        Intent atras = new Intent(MainActivity.this, InicioSesion.class);
+        MainActivity.this.startActivity(atras);
+        MainActivity.this.finish();
     }
 
 

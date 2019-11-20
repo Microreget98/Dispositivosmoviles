@@ -17,20 +17,21 @@ import android.os.Environment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Inicio extends AppCompatActivity implements View.OnClickListener{
     //region Declaracion de variables
@@ -126,7 +127,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
 
         sound = getResources().getIdentifier(cs, "raw", getPackageName());
         mp = MediaPlayer.create(this, sound);
-        Toast.makeText(getApplicationContext(), sound, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), sound, Toast.LENGTH_LONG).show();
         temp = getResources().getIdentifier(cs + "frases", "array", getPackageName());
         frases = getResources().getStringArray(temp);
         temp = getResources().getIdentifier(cs + "tiempos", "array", getPackageName());
