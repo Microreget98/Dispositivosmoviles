@@ -142,7 +142,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         playmp iniAu = new playmp();
         fin = iniAu.execute();
     }
-
+    //region onBackpressed
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -154,6 +154,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         startActivity(new Intent(this, Intermedio.class));
         finish();
     }
+    //endregion
     //region Hilo secundario
     private class playmp extends AsyncTask<Void, Integer, AsyncTask.Status> {
 
@@ -280,7 +281,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         Bundle extras = getIntent().getExtras();
         cs = extras.getString("cuentoseleccionado");
     }
-    //endregion
+    //endregion.
     //region Validacion de los colores
     private void validacionColores(View v, String color){
         color = v.getTag().toString();
