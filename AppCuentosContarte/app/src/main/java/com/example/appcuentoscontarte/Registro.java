@@ -26,7 +26,7 @@ public class Registro extends AppCompatActivity {
 
     EditText usuario,correo;
     Button btnRegistro,btnInicioSesion;
-    boolean existe;
+    boolean exits;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -56,14 +56,17 @@ public class Registro extends AppCompatActivity {
                 else{
 
                    validarUsuario(user);
-                   if(!validarUsuario(user)){
+                   if(exits==true){
                        usuario.setError("El usuario ya existe");
                    }
                    else {
                        validarEmail(mail);
+                       
                    }
-                   if(!validarEmail(mail)){
+                   if(!validarEmail(mail) ){
+
                        correo.setError("Correo no valido");
+
                    }
                    else {
 
@@ -93,7 +96,10 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    private boolean validarUsuario(String user) {
+
+
+    protected boolean validarUsuario(String user) {
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         Query query = databaseReference.child("Usuario").orderByChild("usuario").equalTo(user);
@@ -104,11 +110,11 @@ public class Registro extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                        existe = true;
+                        exits = true;
 
                     }
                 } else {
-                    existe = false;
+                    exits = false;
                 }
 
             }
@@ -118,7 +124,7 @@ public class Registro extends AppCompatActivity {
 
             }
         });
-        return existe;
+        return exits;
     }
 
     private boolean validarEmail(String email) {
