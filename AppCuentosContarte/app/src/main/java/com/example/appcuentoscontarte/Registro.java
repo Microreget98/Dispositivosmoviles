@@ -61,7 +61,7 @@ public class Registro extends AppCompatActivity {
                    }
                    else {
                        validarEmail(mail);
-                       
+
                    }
                    if(!validarEmail(mail) ){
 
@@ -74,7 +74,7 @@ public class Registro extends AppCompatActivity {
                        u.setUid(UUID.randomUUID().toString()); //Agregamos el set de ID
                        u.setUsuario(user);
                        u.setCorreo(mail);
-                       databaseReference.child("Usuario").child(u.getUid()).setValue(u); // Se coloco el ID como hijo principal el lugar del usuario
+                       databaseReference.child("Usuario").child(u.getUsuario()).setValue(u); 
                        Toast.makeText(Registro.this, "Se ha registrado", Toast.LENGTH_LONG).show();
 
                        limpiarCampos();
