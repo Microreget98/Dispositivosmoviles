@@ -522,8 +522,6 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
              //endregion   
             default:
                 break;
-
         }
-
     }
 }
