@@ -81,20 +81,13 @@ public class InicioSesion extends AppCompatActivity  {
             public void onClick(View v) {
 
                 usingresado = EdtUsuario.getText().toString();
-                if(usingresado.equals(""))
-                {
-                    Toast.makeText(getApplicationContext(), "El campo usuario está vacío", Toast.LENGTH_LONG).show();
-                }
-                else{
-                    databaseReference = FirebaseDatabase.getInstance().getReference();
-                    Query query = databaseReference.child("Usuario").orderByChild("usuario").equalTo(usingresado);
+                usingresado.replaceAll("\\s","");
 
-                    query.addListenerForSingleValueEvent(new ValueEventListener() {
-
-
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
+                databaseReference = FirebaseDatabase.getInstance().getReference();
+                Query query = databaseReference.child("Usuario").orderByChild("usuario").equalTo(usingresado);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
 
                             if (dataSnapshot.exists()) {
                                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {

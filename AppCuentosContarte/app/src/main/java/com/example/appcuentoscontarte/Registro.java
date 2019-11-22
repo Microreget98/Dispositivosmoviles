@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class Registro extends AppCompatActivity {
@@ -34,7 +35,7 @@ public class Registro extends AppCompatActivity {
 
     EditText usuario,correo;
     Button btnRegistro,btnInicioSesion;
-    boolean existe;
+    boolean exits;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
 
@@ -62,25 +63,30 @@ public class Registro extends AppCompatActivity {
                     validacion();
                 }
                 else{
-//                   validarUsuario(user);
-                   if(!validarUsuario(user)){
+
+                   validarUsuario(user);
+                   if(exits==true){
                        usuario.setError("El usuario ya existe");
                    }
                    else {
-//                       validarEmail(mail);
-                       if(!validarEmail(mail)){
-                           correo.setError("Correo no valido");
-                       }
-                       else {
+                       validarEmail(mail);
 
-                           Usuario u = new Usuario();
-                           u.setUsuario(user);
-                           u.setCorreo(mail);
-                           databaseReference.child("Usuario").child(u.getUsuario()).setValue(u);
-                           Toast.makeText(Registro.this, "Se ha registrado", Toast.LENGTH_LONG).show();
+                   }
+                   if(!validarEmail(mail) ){
 
-                           limpiarCampos();
-                       }
+                       correo.setError("Correo no valido");
+
+                   }
+                   else {
+
+                       Usuario u = new Usuario();
+                       u.setUid(UUID.randomUUID().toString()); //Agregamos el set de ID
+                       u.setUsuario(user);
+                       u.setCorreo(mail);
+                       databaseReference.child("Usuario").child(u.getUsuario()).setValue(u); 
+                       Toast.makeText(Registro.this, "Se ha registrado", Toast.LENGTH_LONG).show();
+
+                       limpiarCampos();
                    }
                 }
 
@@ -101,7 +107,10 @@ public class Registro extends AppCompatActivity {
 
     }
 
-    private boolean validarUsuario(String user) {
+
+
+    protected boolean validarUsuario(String user) {
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         Query query = databaseReference.child("Usuario").orderByChild("usuario").equalTo(user);
@@ -112,11 +121,11 @@ public class Registro extends AppCompatActivity {
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                        existe = true;
+                        exits = true;
 
                     }
                 } else {
-                    existe = false;
+                    exits = false;
                 }
 
             }
@@ -126,7 +135,7 @@ public class Registro extends AppCompatActivity {
 
             }
         });
-        return existe;
+        return exits;
     }
 
     private boolean validarEmail(String email) {

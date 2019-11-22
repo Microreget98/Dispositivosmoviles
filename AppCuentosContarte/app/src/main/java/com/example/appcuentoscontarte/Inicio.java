@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.media.MediaScannerConnection;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -73,7 +75,8 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         currPaint = (ImageButton)paintLayout2.getChildAt(5);
         currPaint.setImageDrawable(getResources().getDrawable(R.drawable.paint_pressed));
 
-        btnreproducir = (ImageButton) findViewById(R.id.btnreproducir);
+
+        btncompartir = (ImageButton) findViewById(R.id.btncompartir);
         btnsiguiente = (ImageButton) findViewById(R.id.btnsiguiente);
         btntrazo = (ImageButton)findViewById(R.id.btntrazo);
         btnborrador = (ImageButton)findViewById(R.id.btnborrador);
@@ -116,7 +119,7 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         azul.setOnClickListener(this);
 
         btnsiguiente.setOnClickListener(this);
-        btnreproducir.setOnClickListener(this);
+        btncompartir.setOnClickListener(this);
         btntrazo.setOnClickListener(this);
         btnborrador.setOnClickListener(this);
         btnhojanueva.setOnClickListener(this);
@@ -153,6 +156,33 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
         exit.cancel(true);
         startActivity(new Intent(this, Intermedio.class));
         finish();
+    }
+    //endregion
+    //region guardado de ultima pantalla
+    //Este metodo sera colocado al final del hilo de los audios
+    public void GuardarUltimo(){
+
+        try {
+            View savingLayout = (View) findViewById(R.id.lienzo);
+            File file = saveBitMap(Inicio.this, savingLayout);
+            if (file != null) {
+                Toast.makeText(getApplicationContext(), "¡Dibujo guardado en la galería!", Toast.LENGTH_LONG).show();
+
+                Log.i("TAG", "Drawing saved to the gallery!");
+            } else {
+                Toast.makeText(getApplicationContext(), "¡ Oops, dibujo  no se ha guardado en la galería!", Toast.LENGTH_LONG).show();
+
+                Log.i("TAG", "Oops! Image could not be saved.");
+            }
+            file.setReadable(true,false);
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(file));
+            intent.setType("image/jpeg");
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
     }
     //endregion
     //region Hilo secundario
@@ -444,16 +474,33 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 });
                 tamanopunto.show();
                 break;
-                //endregion
-            //region btnreproducir
-            case R.id.btnreproducir:
-//                String naudio = String.valueOf(current_audio);
-//                Toast.makeText(getApplicationContext(), naudio, Toast.LENGTH_LONG).show();
-//
-//                Intent fin= new Intent(Inicio.this, Final.class);
-//
-//                Inicio.this.startActivity(fin);
-//                Inicio.this.finish();
+                //endregin
+                // regin btncompartir
+            case R.id.btncompartir:
+
+                try {
+                    View savingLayout = (View) findViewById(R.id.lienzo);
+                    File file = saveBitMap(Inicio.this, savingLayout);
+                    if (file != null) {
+                        //Toast.makeText(getApplicationContext(), "¡Dibujo guardado en la galería!", Toast.LENGTH_LONG).show();
+
+                        Log.i("TAG", "Drawing saved to the gallery!");
+                    } else {
+                        //Toast.makeText(getApplicationContext(), "¡ Oops, dibujo  no se ha guardado en la galería!", Toast.LENGTH_LONG).show();
+
+                        Log.i("TAG", "Oops! Image could not be saved.");
+                    }
+                    file.setReadable(true,false);
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(file));
+                    intent.setType("image/jpeg");
+                    startActivity(Intent.createChooser(intent,"Compartir vía"));
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
+
+
                 break;
                 //endregion
             //region btnsiguiente
@@ -524,4 +571,5 @@ public class Inicio extends AppCompatActivity implements View.OnClickListener{
                 break;
         }
     }
+
 }
